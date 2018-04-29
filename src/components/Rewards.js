@@ -9,6 +9,7 @@ import nfinite from '../brand-logos/nfinitestrength.jpg';
 import stylebee from '../brand-logos/stylebee.svg';
 import appachef from '../brand-logos/appachef.jpg';
 import silicon42 from '../brand-logos/42siliconvalley_logo.png';
+import angelhack from '../brand-logos/angelhack-4-logo2-3.jpg';
 
 const brands=[{
   id: 1,
@@ -45,6 +46,11 @@ const brands=[{
   image: silicon42,
   description: 'Top users can redeem to participate in a 28-day qualifying period (piscine) to participate in the coding program, with housing included.',
   rewardValue: 500
+},{
+  id: 8,
+  image: angelhack,
+  description: 'Redeem for free AngelHack events in the San Francisco Bay Area.',
+  rewardValue: 50
 }]
 
 class RewardsPage extends Component {
