@@ -18,7 +18,6 @@
 
 #root {
   height: 100vh;
-  overflow: hidden;
 }
 
 .sidenav {
@@ -47,7 +46,7 @@
 }
 
 .set-min-height {
-  height: calc(100vh - 55px) !important;
+  min-height: calc(100vh - 55px) !important;
 }
 
 .main-user-info {
@@ -184,4 +183,20 @@
 .primary-text{
   color: #41E2BA !important;
 
+}
+
+.center-content{
+  display: flex !important;
+  justify-content: center !important;
+}
+
+
+.align-content-left{
+  display: flex !important;
+  justify-content: flex-start !important;
+}
+
+.align-content-right{
+  display: flex !important;
+  justify-content: flex-end !important;
 }

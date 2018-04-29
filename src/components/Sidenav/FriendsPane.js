@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon, Tab } from 'semantic-ui-react';
+import { Tab } from 'semantic-ui-react';
 import UserInfoCard from './UserInfo';
 
 class FriendsPane extends Component {
@@ -27,7 +27,6 @@ class FriendsPane extends Component {
   }
 
   render() {
-    const { userInfo } = this.state;
 
     return (
       <Tab.Pane className="set-min-tab-height">

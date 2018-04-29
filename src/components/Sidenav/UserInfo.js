@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, Image, Statistic, Header, Icon  } from 'semantic-ui-react';
+import { Icon  } from 'semantic-ui-react';
 
 class UserInfoCard extends Component {
   constructor() {

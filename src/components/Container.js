@@ -1,28 +1,43 @@
 import React, { Component } from 'react'
 import update from 'immutability-helper'
 import { DragDropContext } from 'react-dnd'
-import HTML5Backend, { NativeTypes } from 'react-dnd-html5-backend'
+import HTML5Backend from 'react-dnd-html5-backend'
 import Dustbin from './Dustbin'
 import Box from './Box'
 import ItemTypes from './ItemTypes'
+import {Grid} from 'semantic-ui-react';
+
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 class Container extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			dustbins: [
-				{ accepts: [ItemTypes.GLASS], lastDroppedItem: null },
-				{ accepts: [ItemTypes.FOOD], lastDroppedItem: null },
-				{
-					accepts: [ItemTypes.PAPER, ItemTypes.GLASS, NativeTypes.URL],
-					lastDroppedItem: null,
-				},
-				{ accepts: [ItemTypes.PAPER, NativeTypes.FILE], lastDroppedItem: null },
+				{ accepts: [ItemTypes.ANSWER], lastDroppedItem: null },
+				{ accepts: [ItemTypes.ANSWER], lastDroppedItem: null },
+        { accepts: [ItemTypes.ANSWER], lastDroppedItem: null },
+				{ accepts: [ItemTypes.ANSWER], lastDroppedItem: null },
+        { accepts: [ItemTypes.ANSWER], lastDroppedItem: null },
+        { accepts: [ItemTypes.ANSWER], lastDroppedItem: null, sideBySide: true },
+				{ accepts: [ItemTypes.ANSWER], lastDroppedItem: null, sideBySide: true },
+				{ accepts: [ItemTypes.ANSWER], lastDroppedItem: null },
 			],
 			boxes: [
-				{ name: 'Bottle', type: ItemTypes.GLASS },
-				{ name: 'Banana', type: ItemTypes.FOOD },
-				{ name: 'Magazine', type: ItemTypes.PAPER },
+				{ name: 'Start', type: ItemTypes.ANSWER },
+				{ name: 'Print to screen a message asking for the number', type: ItemTypes.ANSWER },
+        { name: 'Read the input (x)', type: ItemTypes.ANSWER },
+        { name: 'Find the remainder using x % 2 (modulus)', type: ItemTypes.ANSWER },
+        { name: 'Check if the remainder is equal to zero', type: ItemTypes.ANSWER },
+        { name: 'Print to screen a "The input is even!"', type: ItemTypes.ANSWER },
+        { name: 'Print to screen a "The input is odd!"', type: ItemTypes.ANSWER },
+        { name: 'Stop', type: ItemTypes.ANSWER },
 			],
 			droppedBoxNames: [],
 		}
@@ -33,40 +48,71 @@ class Container extends Component {
 	}
 
 	render() {
-		const { boxes, dustbins } = this.state
+    const { boxes, dustbins } = this.state;
+    const { handleDragNDrop } = this.props;
+    
+    let isLeft = true;
+
+    const shuffledBoxes = shuffle(boxes);
 
     console.log(dustbins);
 
 		return (
-			<div>
-				<div style={{ overflow: 'hidden', clear: 'both' }}>
-					{dustbins.map(({ accepts, lastDroppedItem }, index) => (
-						<Dustbin
-							accepts={accepts}
-							lastDroppedItem={lastDroppedItem}
-							onDrop={item => this.handleDrop(index, item)}
-							key={index}
-						/>
-					))}
-				</div>
+			<Grid columns={2}>
+        <Grid.Column>
+          <div style={{ overflow: 'hidden', clear: 'both' }}>
+            {shuffledBoxes.map(({ name, type }, index) => (
+              <Box
+                name={name}
+                type={type}
+                isDropped={this.isDropped(name)}
+                key={index}
+              />
+            ))}
+          </div>
+        </Grid.Column>
+        <Grid.Column>
+          <Grid columns="equal">
+              {dustbins.map(({ accepts, lastDroppedItem, sideBySide }, index) => {
+                
+                if(sideBySide){
+                  const className = isLeft ? 'align-content-left' : 'align-content-right';
+                  isLeft = false;
+                  return(
+                    <Grid.Column className={className} width={8}>
+                      <Dustbin
+                        accepts={accepts}
+                        lastDroppedItem={lastDroppedItem}
+                        onDrop={item => this.handleDrop(index, item)}
+                        key={index}
+                      />
+                    </Grid.Column>)
+                }
 
-				<div style={{ overflow: 'hidden', clear: 'both' }}>
-					{boxes.map(({ name, type }, index) => (
-						<Box
-							name={name}
-							type={type}
-							isDropped={this.isDropped(name)}
-							key={index}
-						/>
-					))}
-				</div>
-			</div>
+                return(
+                  <Grid.Column 
+                    className="center-content"
+                    width={16}
+                  >
+                    <Dustbin
+                      accepts={accepts}
+                      lastDroppedItem={lastDroppedItem}
+                      onDrop={item => this.handleDrop(index, item)}
+                      key={index}
+                    />
+                  </Grid.Column>)
+                  }
+              )}
+          </Grid>
+        </Grid.Column>
+			</Grid>
 		)
 	}
 
 	handleDrop(index, item) {
 		const { name } = item
-		const droppedBoxNames = name ? { $push: [name] } : {}
+		const droppedBoxNames = name ? { $push: [{index, name}] } : {}
+    const { handleDragNDrop } = this.props;
 
 		this.setState(
 			update(this.state, {
@@ -79,7 +125,9 @@ class Container extends Component {
 				},
 				droppedBoxNames,
 			}),
-		)
+    )
+    
+    handleDragNDrop(this.state.droppedBoxNames);
 	}
 }
 

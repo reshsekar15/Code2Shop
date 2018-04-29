@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Menu, Tab  } from 'semantic-ui-react';
-import Loading from '../Loading';
 import UserInfoCard from './UserInfo';
 
 import PointsPane from './PointsPane';

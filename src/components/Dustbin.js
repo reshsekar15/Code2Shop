@@ -3,11 +3,12 @@ import PropTypes from 'prop-types'
 import { DropTarget } from 'react-dnd'
 
 const style = {
-	height: '12rem',
-	width: '12rem',
+	minHeight: '1rem',
+	minWidth: '12rem',
 	marginRight: '1.5rem',
 	marginBottom: '1.5rem',
-	color: 'white',
+  color: 'white',
+  fontWeight: 600,
 	padding: '1rem',
 	textAlign: 'center',
 	fontSize: '1rem',
@@ -39,7 +40,6 @@ class Dustbin extends Component {
 
 	render() {
 		const {
-			accepts,
 			isOver,
 			canDrop,
 			connectDropTarget,
@@ -56,12 +56,12 @@ class Dustbin extends Component {
 
 		return connectDropTarget(
 			<div style={{ ...style, backgroundColor }}>
-				{isActive
+				{isActive 
 					? 'Release to drop'
-					: `This dustbin accepts: ${accepts.join(', ')}`}
+					: lastDroppedItem ? '' : `Drop answer here`}
 
 				{lastDroppedItem && (
-					<p>Last dropped: {JSON.stringify(lastDroppedItem)}</p>
+					<p>{lastDroppedItem.name}</p>
 				)}
 			</div>,
 		)

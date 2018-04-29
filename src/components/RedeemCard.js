@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import { Card, Image, Icon } from 'semantic-ui-react';
-
-import veridium from '../brand-logos/Veridium-Logo.png';
+import { Card, Image } from 'semantic-ui-react';
 
 class RedeemCard extends Component {
   render() {

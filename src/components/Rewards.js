@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Statistic, Button, Card, Container, Image, Icon } from 'semantic-ui-react';
+import { Statistic, Card, Container } from 'semantic-ui-react';
 import RedeemCard from './RedeemCard';
 
 import veridium from '../brand-logos/Veridium-Logo.png';
@@ -7,6 +7,8 @@ import dragonfly from '../brand-logos/dragonflyconsultants.png';
 import neev_life from '../brand-logos/neev_life.png';
 import nfinite from '../brand-logos/nfinitestrength.jpg';
 import stylebee from '../brand-logos/stylebee.svg';
+import appachef from '../brand-logos/appachef.jpg';
+import silicon42 from '../brand-logos/42siliconvalley_logo.png';
 
 const brands=[{
   id: 1,
@@ -33,6 +35,16 @@ const brands=[{
   image: stylebee,
   description: 'Discount on hair and makeup booking with top stylists.',
   rewardValue: 100
+},{
+  id: 6,
+  image: appachef,
+  description: 'Discount code for local chef-prepared meals.',
+  rewardValue: 150
+},{
+  id: 7,
+  image: silicon42,
+  description: 'Redeem for a phone conversation to learn about 42 Silicon Valley free coding education.',
+  rewardValue: 500
 }]
 
 class RewardsPage extends Component {
@@ -49,7 +61,7 @@ class RewardsPage extends Component {
     const { redeemed } = this.state;
     const newRedeemed = redeemed;
 
-    if(redeemed.indexOf(id) === -1){
+    if(redeemed.indexOf(id) === -1 && (this.state.availablePoints - value) >= 0){
       newRedeemed.push(id);
       this.setState({availablePoints: this.state.availablePoints - value, redeemed: newRedeemed});
     }    

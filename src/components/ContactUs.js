@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { TextArea, Button } from 'semantic-ui-react';
 
 class ContactUsPage extends Component {
   constructor() {
