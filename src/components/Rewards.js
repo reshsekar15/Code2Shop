@@ -43,7 +43,7 @@ const brands=[{
 },{
   id: 7,
   image: silicon42,
-  description: 'Redeem for a phone conversation to learn about 42 Silicon Valley free coding education.',
+  description: 'Top users can redeem to participate in a 28-day qualifying period (piscine) to participate in the coding program, with housing included.',
   rewardValue: 500
 }]
 
