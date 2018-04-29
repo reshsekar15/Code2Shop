@@ -56,17 +56,7 @@ class ChallengesPage extends Component {
       
       return;
     } 
-    const { dustbins, correctOrder}  = this.state;
-    if(dustbins.length >= correctOrder.length){
-      for(let i = 0; correctOrder.length; i++){
-        const foundItem = dustbins.find(v => v.index === i && v.name === correctOrder[i]);
-        // if(!foundItem){
-        //   alert("Something isn't quite right...");
-        //   return;
-        // }
-      }
-      alert('You added everything in the correct order!');
-    }    
+    alert('You added everything in the correct order!');   
   }
 
   handleDragNDrop(dustbins){
