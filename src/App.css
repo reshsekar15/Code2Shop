@@ -1,28 +1,133 @@
-.App {
-  text-align: center;
+.top-navbar {
+  background: linear-gradient(to right, aqua, aquamarine) !important;
+  height: 55px;
+  display: flex;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.top-navbar .brand-logo {
+  height: 55px;
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+#root {
+  height: 100vh;
+  overflow: hidden;
 }
 
-.App-title {
-  font-size: 1.5em;
+.sidenav {
+  margin: 0 !important;
+  width: 300px !important;
+  position: fixed !important;
+  border: none !important;
+  overflow: hidden !important;
 }
 
-.App-intro {
-  font-size: large;
+.challenges-container {
+  position: relative;
+  margin-top: 55px;
+  width: calc(100vw - 300px);
+  margin-left: 300px;
+  background-color: rgba(0, 0, 0, 0.05);
+  overflow: hidden;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.set-min-height {
+  height: calc(100vh - 55px) !important;
 }
+
+.main-user-info {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  line-height: 48px;
+  margin: 15px;
+  justify-content: space-between;
+}
+
+.main-user-info .user-image {
+  border-radius: 50%;
+}
+
+.main-user-info .user-name {
+  font-size: 1.6rem;
+  font-weight: 600;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.side-info-tab {
+  font-size: 1.2rem;
+  padding: 15px 20px !important;
+  font-weight: 660;
+}
+
+.side-info-tab .label-value {
+  margin-bottom: 5px;
+  font-size: 1.4rem !important;
+  color: #33ffba;
+}
+
+.completed-challenges span:first-child {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.completed-challenges span:last-child {
+  font-size: 1.25rem;
+}
+
+.set-min-tab-height {
+  height: calc(100vh - 203px) !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+}
+
+.no-left-margin {
+  margin-left: 0px !important;
+}
+
+.code-container {
+  position: relative;
+  padding: 10px;
+}
+
+.code-container .code-area {
+  display: block;
+  height: 100%;
+  width: 100%;
+  word-wrap: break-word;
+  outline: none;
+  border: none;
+  box-shadow: 0px 2px 3px lightslategray;
+  border-radius: 10px;
+  background: url(http://i.imgur.com/2cOaJ.png);
+  background-attachment: local;
+  background-repeat: no-repeat;
+  padding-left: 35px;
+  padding-top: 10px;
+  background-color: white;
+  resize: none;
+}
+
+.challenge-topbar {
+  border: none !important;
+  margin-bottom: 0 !important;
+  border-radius: none !important;
+}
+
+.challenge-topbar .item {
+  border-radius: 0 !important;
+}
+
+.code-button {
+  background-color: #33ffba !important;
+  border-radius: 18px !important;
+  color: #262626 !important;
+}
+/*# sourceMappingURL=app.css.map */

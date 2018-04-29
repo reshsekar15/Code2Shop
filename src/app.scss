@@ -1,0 +1,133 @@
+.top-navbar {
+  background: linear-gradient(to right, aqua , aquamarine)!important;
+  height: 55px;
+  display: flex;
+  .brand-logo {
+    height: 55px;
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+  }
+}
+
+#root {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidenav {
+  margin: 0 !important;
+  width: 300px !important;
+  position: fixed !important;
+  border: none !important;
+  overflow: hidden !important;
+  //top: 55px;
+}
+
+.challenges-container {
+  position: relative;
+  margin-top: 55px;
+  width: calc(100vw - 300px);
+  margin-left: 300px;
+  background-color: rgba(0,0,0,.05);
+  overflow: hidden;
+}
+
+.set-min-height {
+  height: calc(100vh - 55px) !important;
+}
+
+.user-info-menu {
+
+}
+.main-user-info {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  line-height: 48px;
+  margin: 15px;
+  justify-content: space-between;
+
+  .user-image {
+    border-radius: 50%;
+  }
+
+  .user-name {
+    font-size: 1.6rem;
+    font-weight: 600;
+    display:block;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.side-info-tab{
+  font-size: 1.2rem;
+  padding: 15px 20px !important;
+  font-weight: 660;
+  .label-value{
+    margin-bottom: 5px;
+    font-size: 1.4rem !important;
+    color: darken(aquamarine, 15%);
+  }
+}
+
+.completed-challenges {
+  span:first-child{
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-right: 10px;
+  }
+  span:last-child{
+    font-size: 1.25rem;
+  }
+}
+
+.set-min-tab-height{
+  height: calc(100vh - 203px) !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+}
+
+.no-left-margin{
+  margin-left: 0px !important;
+}
+
+.code-container{
+  position: relative;
+  padding: 10px;
+  .code-area {
+    display:block;
+    height: 100%;
+    width: 100%;
+    word-wrap: break-word;
+    outline: none;
+    border: none;
+    box-shadow: 0px 2px 3px lightslategray;
+    border-radius: 10px;
+    background: url(http://i.imgur.com/2cOaJ.png);
+    background-attachment: local;
+    background-repeat: no-repeat;
+    padding-left: 35px;
+    padding-top: 10px;
+    background-color: white;
+    resize: none;
+  }
+}
+
+.challenge-topbar{
+  border: none !important;
+  margin-bottom: 0 !important;
+  border-radius: none !important;
+  .item{
+    border-radius: 0 !important;
+  }
+}
+
+.code-button {
+  background-color: darken(aquamarine, 15%) !important;
+  border-radius: 18px !important;
+  color: lighten(black,15%) !important;
+}
