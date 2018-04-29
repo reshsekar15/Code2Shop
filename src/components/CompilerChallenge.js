@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { TextArea, Button } from 'semantic-ui-react';
 import ChallengeTopBar from './ChallengeTopBar';
 
-import DragNDropChallenge from './DragNDropChallenge';
-
-class ChallengesPage extends Component {
+class CompilerChallenge extends Component {
   constructor() {
     super();
 
@@ -54,10 +52,18 @@ class ChallengesPage extends Component {
         <ChallengeTopBar 
           handleSubmitCode={this.handleSubmitScript.bind(this)}
         />
-        <DragNDropChallenge />
+        <div className="code-container">
+          <TextArea 
+            rows={50}
+            wrap="hard"
+            className="code-area"
+            onChange={(e, { value }) => this.updateText(value)} 
+            onKeyDown={this.handleKeyUp.bind(this)}
+          />
+        </div>
       </div>
     )
   }
 }
 
-export default ChallengesPage;
+export default CompilerChallenge;

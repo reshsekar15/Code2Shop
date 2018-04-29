@@ -8,6 +8,12 @@
     align-items: center;
     margin-left: 15px;
   }
+
+  
+}
+
+.ui.menu .item:before{
+  background: none !important;
 }
 
 #root {
@@ -21,7 +27,7 @@
   position: fixed !important;
   border: none !important;
   overflow: hidden !important;
-  //top: 55px;
+  top: 55px;
 }
 
 .challenges-container {
@@ -33,13 +39,17 @@
   overflow: hidden;
 }
 
+.partnership-container {
+  position: relative;
+  margin-top: 55px;
+  padding-top: 20px;
+  background-color: rgba(0,0,0,.05);
+}
+
 .set-min-height {
   height: calc(100vh - 55px) !important;
 }
 
-.user-info-menu {
-
-}
 .main-user-info {
   display: flex;
   align-items: center;
@@ -117,6 +127,11 @@
   }
 }
 
+.ui.card>.image, .ui.cards>.card>.image{
+  background: transparent;
+  color: black;
+}
+
 .challenge-topbar{
   border: none !important;
   margin-bottom: 0 !important;
@@ -127,7 +142,46 @@
 }
 
 .code-button {
-  background-color: darken(aquamarine, 15%) !important;
+  background-color: #41E2BA !important;
   border-radius: 18px !important;
-  color: lighten(black,15%) !important;
+  color: white !important;
+}
+
+.code-button-gray {
+  background-color: #C7C7C7 !important;
+  border-radius: 18px !important;
+  color: white !important;
+}
+
+.strike-through{
+  color: dimgray;
+  text-decoration: line-through;
+  font-weight: 600; 
+  font-size: 1.3rem;
+  text-align: center;
+  width: 100%;
+  cursor: unset;
+}
+
+.redeemable {
+  color: aquamarine !important;
+  font-weight: 600; 
+  font-size: 1.3rem;
+  text-align: center;
+  width: 100%;
+}
+
+.redeemable-points {
+  text-align: center;
+}
+
+.redeemable-points-value{
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.primary-text{
+  color: #41E2BA !important;
+
 }
