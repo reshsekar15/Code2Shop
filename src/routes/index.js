@@ -4,10 +4,12 @@ import { Switch, Route } from 'react-router-dom';
 import Challenges from '../components/Challenges';
 import Rewards from '../components/Rewards';
 import AboutUs from '../components/AboutUs';
+import Account from '../container/Account';
 import ContactUs from '../components/ContactUs';
 
 import Layout from '../components/Layout';
 import Error from '../components/Error';
+import SignUp from '../container/SignUp';
 
 const Index = () => (
   <Switch>
@@ -51,6 +53,22 @@ const Index = () => (
         </Layout>
       )}
     />
+    <Route
+      path="/account"
+      render={props => (
+        <Layout {...props}>
+          <Account {...props}/>
+        </Layout>
+      )}
+      />
+      <Route
+      path="/signup"
+      render={props => (
+        <Layout {...props}>
+          <SignUp {...props}/>
+        </Layout>
+      )}
+      />
     <Route
       render={props => (
         <Error {...props} title="404" content="Sorry, the route you requested does not exist" />

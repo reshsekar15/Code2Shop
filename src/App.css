@@ -31,10 +31,13 @@
 .challenges-container {
   position: relative;
   margin-top: 55px;
-  width: calc(100vw - 300px);
-  margin-left: 300px;
   background-color: rgba(0, 0, 0, 0.05);
   overflow: hidden;
+}
+
+.with-sidenav {
+  width: calc(100vw - 300px);
+  margin-left: 300px;
 }
 
 .partnership-container {
@@ -46,6 +49,17 @@
 
 .set-min-height {
   min-height: calc(100vh - 55px) !important;
+}
+
+.sign-up-container {
+  display: flex !important;
+  align-items: center !important;
+  height: calc(100vh - 55px);
+}
+
+.sign-up-container div.ui.segment {
+  width: 100%;
+  margin-top: -300px;
 }
 
 .main-user-info {
@@ -101,6 +115,10 @@
 
 .no-left-margin {
   margin-left: 0px !important;
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 .code-container {

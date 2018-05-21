@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import { routerMiddleware } from 'react-router-redux';
 import storage from 'redux-persist/es/storage';
 import reducers from './reducers';
-import { logger, checkJobNumber } from './middleware';
+import {logger, getUserInfo, crashReporter} from './middleware';
 
 export const persistor = (store) => persistStore(
   store,
@@ -14,10 +14,11 @@ export const persistor = (store) => persistStore(
 
 export default function configureStore(history, initialState) {
   const middleware = [
+    logger,
+    getUserInfo,
+    crashReporter,
     thunk,
     routerMiddleware(history),
-    logger,
-    checkJobNumber
   ];
 
   // In development, use the browser's Redux dev tools extension if installed
@@ -30,7 +31,7 @@ export default function configureStore(history, initialState) {
   const config = {
     key: 'root',
     storage,
-    blacklist: ['status','app'],
+    //blacklist: ['status','app'],
   };
 
   const rootReducer = persistCombineReducers( config, reducers );

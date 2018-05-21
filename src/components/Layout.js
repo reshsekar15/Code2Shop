@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import TopNav from './TopNav';
 import SideNav from './Sidenav/SideNav';
+import Loading from './Loading';
 
 class App extends Component {
   render() {
-    console.log(this.props)
+    const { match, userInfo } = this.props;
+    const showSideNav = match.url === '/challenges';
+
+    if(!userInfo) {
+      return <Loading />
+    }
+
     return (
       <div className="App">
         <TopNav />
-        {this.props.match.url === '/challenges' && <SideNav />}
-        {this.props.children}
+        {showSideNav && <SideNav userInfo={userInfo} />}
+        <div className={showSideNav ? "challenges-container with-sidenav set-min-height" : "challenges-container set-min-height"}>
+          {this.props.children}
+        </div>
       </div>
     );
   }
 }
 
-export default App;
+export default connect(
+  state => state.app,
+  null)
+(App);

@@ -4,3 +4,4 @@ export const actionTypes = {
 
   updateStatus:         '[Status] UPDATE_STATUS',
 }
+

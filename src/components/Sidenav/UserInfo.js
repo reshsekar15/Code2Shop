@@ -1,39 +1,33 @@
 import React, { Component } from 'react';
-import { Icon  } from 'semantic-ui-react';
+import { Icon, Image } from 'semantic-ui-react';
 
 class UserInfoCard extends Component {
   constructor() {
     super();
     this.state = {
       userInfo: {
-        name:{
-          first: '',
-          last: ''
-        },
-        picture: {
-          thumbnail: ''
-        }
-      }
+        username: ''
+      },
+      imageLink: ''
     }
   }
 
-  componentDidMount(){
-    fetch('https://randomuser.me/api/').then(response => {
-      return response.json();
-    }).then(data => {
-      this.setState({ userInfo: data.results[0] });
-    })
+  componentDidMount() {
+    const { userInfo } = this.props;
+
+    const imageLink = userInfo.imageLink ? userInfo.imageLink : 'https://firebasestorage.googleapis.com/v0/b/code2shop-512a4.appspot.com/o/default-icon.png?alt=media&token=b3d2f48e-4c7d-44de-a56b-381e955c06a3';
+    this.setState({ userInfo, imageLink });
   }
 
-  render(){
-    const  { userInfo } = this.state;
+  render() {
+    const { userInfo, imageLink } = this.state;
     const { includeSettingIcon } = this.props;
 
     return (
       <div className="main-user-info">
-        <img className="user-image" src={userInfo.picture.thumbnail} />
-        <span className="user-name">{userInfo.name.first} {userInfo.name.last}</span>
-        {includeSettingIcon && <Icon  size="large" name="setting" />}
+        <Image avatar src={imageLink} />
+        <span className="user-name">{userInfo.username}</span>
+        {includeSettingIcon && <Icon className="clickable" onClick={() => window.location.href = '/account'} size="large" name="setting" />}
       </div>
     )
   }

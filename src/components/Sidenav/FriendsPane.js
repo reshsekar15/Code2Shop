@@ -30,8 +30,6 @@ class FriendsPane extends Component {
 
     return (
       <Tab.Pane className="set-min-tab-height">
-        <UserInfoCard />
-        <UserInfoCard />
       </Tab.Pane>
     )
   }

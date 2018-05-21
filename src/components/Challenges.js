@@ -79,7 +79,7 @@ class ChallengesPage extends Component {
   render() {
     const {showCompiler} = this.state;
     return (
-      <div className="challenges-container set-min-height">
+      <div>
         <ChallengeTopBar 
           handleSubmitCode={this.handleSubmitScript.bind(this)}
           switchChallengeType={this.switchChallengeType.bind(this)}

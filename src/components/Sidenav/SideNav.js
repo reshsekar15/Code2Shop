@@ -9,6 +9,7 @@ import FriendsPane from './FriendsPane';
 class SideNav extends Component {
 
   render() {
+    const { userInfo } = this.props;
     const panes = [{
       menuItem: <Menu.Item className="side-info-tab"><div className="label-value">375</div>Points</Menu.Item>,
       render: () => <PointsPane />
@@ -22,7 +23,7 @@ class SideNav extends Component {
 
     return (
       <Menu vertical className="sidenav set-min-height">
-        <UserInfoCard includeSettingIcon={true} />
+        <UserInfoCard userInfo={userInfo} includeSettingIcon={true} />
         <Tab panes={panes} />
       </Menu>
     )
