@@ -109,8 +109,6 @@ class SignUpForm extends Component {
       username === '' ||
       email.indexOf('@') === -1;
 
-      console.log(error);
-
       return (
         <Grid centered>
           <Grid.Column 

@@ -4,13 +4,13 @@ import { db } from '../../firebase';
 import { actionTypes } from '../actions/actionTypes';
 
 export const getUserInfo = store => next => action => {
-  console.log(action);
   if(action.type === "persist/REHYDRATE"){
     firebase.auth.onAuthStateChanged(authUser => {
-      db.users.onceGetCurrentUser(authUser.uid).then(user => {
-        console.log(user.val());
-        store.dispatch({type: actionTypes.initApplication, userInfo: user.val()});
-      })      
+      if(!!authUser){
+        db.users.onceGetCurrentUser(authUser.uid).then(user => {
+          store.dispatch({type: actionTypes.initApplication, userInfo: user.val()});
+        })
+      }
     });
     //initApp(store.dispatch, store.getState).then();
   }
