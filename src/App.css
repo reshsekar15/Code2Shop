@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Sacramento");
 .top-navbar {
   background: linear-gradient(to right, aqua, aquamarine) !important;
   height: 55px;
@@ -17,6 +18,10 @@
 
 #root {
   height: 100vh;
+}
+
+#root * {
+  border-radius: 0;
 }
 
 .sidenav {
@@ -96,6 +101,29 @@
   color: #33ffba;
 }
 
+.fancy-font {
+  font-family: 'Sacramento', cursive !important;
+}
+
+h1.fancy-font {
+  font-weight: 400 !important;
+  font-size: 4rem !important;
+}
+
+.c2s-aqua {
+  background-color: #41E2BA !important;
+  color: white !important;
+  text-transform: uppercase !important;
+  font-size: 1.2rem !important;
+  letter-spacing: 3px;
+  padding-left: 50px !important;
+  padding-right: 50px !important;
+}
+
+.c2s-aqua-text {
+  color: #41E2BA !important;
+}
+
 .completed-challenges span:first-child {
   font-size: 1.75rem;
   font-weight: 600;
@@ -104,6 +132,38 @@
 
 .completed-challenges span:last-child {
   font-size: 1.25rem;
+}
+
+.landing-page-jumbotron {
+  position: relative;
+  max-height: 500px;
+}
+
+.landing-page-jumbotron .floating-message {
+  background-color: rgba(240, 240, 240, 0.4);
+  border-radius: 0;
+  position: absolute;
+  left: 40px;
+  bottom: 40px;
+  padding: 25px;
+}
+
+.products-and-services {
+  background-color: #FFFAF9;
+  padding: 20px !important;
+}
+
+.information-header-text {
+  letter-spacing: 1.5px;
+  text-align: center;
+  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+
+.information-sub-header-text {
+  font-family: 'Sacramento', cursive !important;
+  text-align: center;
+  font-size: 2.5rem;
 }
 
 .set-min-tab-height {

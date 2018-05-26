@@ -11,6 +11,7 @@ import Routes from './routes/index';
 import Loading from './components/Loading';
 
 import './App.css';
+import 'semantic-ui-css/semantic.min.css';
 
 const { persistor, store } = configureStore();
 

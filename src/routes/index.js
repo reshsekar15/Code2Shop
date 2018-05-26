@@ -5,6 +5,7 @@ import Challenges from '../components/Challenges';
 import Rewards from '../components/Rewards';
 import AboutUs from '../components/AboutUs';
 import Account from '../container/Account';
+import Landing from '../container/Landing';
 import ContactUs from '../components/ContactUs';
 
 import Layout from '../components/Layout';
@@ -17,8 +18,7 @@ const Index = () => (
       exact
       path="/"
       render={props => (
-        <Layout {...props}>
-        </Layout>
+          <Landing {...props} />
       )}
     />
     <Route
@@ -57,18 +57,18 @@ const Index = () => (
       path="/account"
       render={props => (
         <Layout {...props}>
-          <Account {...props}/>
+          <Account {...props} />
         </Layout>
       )}
-      />
-      <Route
+    />
+    <Route
       path="/signup"
       render={props => (
         <Layout {...props}>
-          <SignUp {...props}/>
+          <SignUp {...props} />
         </Layout>
       )}
-      />
+    />
     <Route
       render={props => (
         <Error {...props} title="404" content="Sorry, the route you requested does not exist" />
