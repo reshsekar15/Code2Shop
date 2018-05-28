@@ -18,21 +18,6 @@ class PasswordChangeForm extends Component {
     this.state = { ...INITIAL_STATE };
   }
 
-  handleOnChange(prop, value){
-    switch(prop){
-      case 'passwordOne':
-        const passwordOneInvalid = value === '';
-        this.setState({passwordOne: value, passwordOneInvalid});
-        break;
-      case 'passwordTwo':
-        const passwordTwoInvalid = value === '';
-        this.setState({passwordTwo: value, passwordTwoInvalid});
-        break;
-      default:
-        break;
-    }
-  }
-
   onSubmit = (event) => {
     const { passwordOne } = this.state;
 
@@ -40,42 +25,61 @@ class PasswordChangeForm extends Component {
       .then(() => {
         this.setState(() => ({ ...INITIAL_STATE }));
       })
-      .catch(error => {
-        this.setState(byPropKey('error', error));
+      .catch((error) => {
+        this.setState({ error });
       });
 
     event.preventDefault();
+  }
+
+  handleOnChange(prop, value) {
+    switch (prop) {
+      case 'passwordOne': {
+        const passwordOneInvalid = value === '';
+        this.setState({ passwordOne: value, passwordOneInvalid });
+      }
+        break;
+      case 'passwordTwo': {
+        const passwordTwoInvalid = value === '' && value !== this.state.passwordOne;
+        this.setState({ passwordTwo: value, passwordTwoInvalid });
+      }
+        break;
+      default:
+        break;
+    }
   }
 
   render() {
     const {
       passwordOne,
       passwordTwo,
+      passwordOneInvalid,
+      passwordTwoInvalid,
       error,
     } = this.state;
 
     const isInvalid =
-      passwordOne !== passwordTwo ||
-      passwordOne === '';
+      passwordOneInvalid ||
+      passwordTwoInvalid;
 
     return (
-			<Form onSubmit={this.onSubmit}>
-					<Form.Input
-            label="New Password"
-						value={passwordOne}
-						onChange={(e, { value }) => this.handleOnChange('passwordOne', value)}
-						type="password"
-						placeholder="New Password"
-					/>
-					<Form.Input
+      <Form onSubmit={this.onSubmit}>
+        <Form.Input
+          label="New Password"
+          value={passwordOne}
+          onChange={(e, { value }) => this.handleOnChange('passwordOne', value)}
+          type="password"
+          placeholder="New Password"
+        />
+        <Form.Input
           label="Confirm New Password"
           value={passwordTwo}
           onChange={(e, { value }) => this.handleOnChange('passwordTwo', value)}
           type="password"
           placeholder="Confirm New Password"
         />
-				<Form.Button
-          disabled={isInvalid} 
+        <Form.Button
+          disabled={isInvalid}
           type="submit"
         >
           Reset My Password

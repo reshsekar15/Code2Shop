@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/es/integration/react';
+import 'semantic-ui-css/semantic.min.css';
 
 import configureStore from './store/configureStore';
 import registerServiceWorker from './registerServiceWorker';
@@ -11,10 +12,10 @@ import Routes from './routes/index';
 import Loading from './components/Loading';
 
 import './App.css';
-import 'semantic-ui-css/semantic.min.css';
 
 const { persistor, store } = configureStore();
 
+// eslint-disable-next-line
 const rootElement = document.getElementById('root');
 
 const Root = () => (
@@ -25,8 +26,8 @@ const Root = () => (
       </Router>
     </PersistGate>
   </Provider>
-)
+);
 
-ReactDOM.render(<Root />, rootElement );
+ReactDOM.render(<Root />, rootElement);
 
 registerServiceWorker();

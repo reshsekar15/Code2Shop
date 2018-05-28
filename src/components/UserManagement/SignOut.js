@@ -1,17 +1,17 @@
 import React from 'react';
+import { Button } from 'semantic-ui-react';
 
-import { auth } from '../../Firebase';
+import { auth } from '../../firebase';
 
-const SignOutButton = (props) =>{
-  return (
-    <a
-      className="navbar-sign-in"
-			onClick={auth.doSignOut}
-			href="/signin"
-      >
+const SignOutButton = () => (
+  <Button
+    as="a"
+    basic
+    onClick={auth.doSignOut}
+    href="/signin"
+  >
     Sign Out
-  </a>  
-  )
-}
+  </Button>
+);
 
 export default SignOutButton;

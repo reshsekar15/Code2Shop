@@ -1,4 +1,4 @@
-import { actionTypes } from '../actions/actionTypes';
+import actionTypes from '../actions/actionTypes';
 
 const initialState = {
   userInfo: null,
@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export default function appReducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case actionTypes.initApplication:
       return {
         ...state,

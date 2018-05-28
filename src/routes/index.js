@@ -11,16 +11,11 @@ import ContactUs from '../components/ContactUs';
 import Layout from '../components/Layout';
 import Error from '../components/Error';
 import SignUp from '../container/SignUp';
+import SignIn from '../container/SignIn';
+import PasswordForget from '../container/PasswordForget';
 
 const Index = () => (
   <Switch>
-    <Route
-      exact
-      path="/"
-      render={props => (
-          <Landing {...props} />
-      )}
-    />
     <Route
       path="/challenges"
       render={props => (
@@ -35,6 +30,13 @@ const Index = () => (
         <Layout {...props}>
           <Rewards {...props} />
         </Layout>
+      )}
+    />
+    <Route
+      exact
+      path="/"
+      render={props => (
+        <Landing {...props} />
       )}
     />
     <Route
@@ -54,18 +56,28 @@ const Index = () => (
       )}
     />
     <Route
+      path="/signup"
+      render={props => (
+        <SignUp {...props} />
+      )}
+    />
+    <Route
+      path="/signin"
+      render={props => (
+        <SignIn {...props} />
+      )}
+    />
+    <Route
+      path="/passwordforget"
+      render={props => (
+        <PasswordForget {...props} />
+      )}
+    />
+    <Route
       path="/account"
       render={props => (
         <Layout {...props}>
           <Account {...props} />
-        </Layout>
-      )}
-    />
-    <Route
-      path="/signup"
-      render={props => (
-        <Layout {...props}>
-          <SignUp {...props} />
         </Layout>
       )}
     />

@@ -37,12 +37,14 @@ const ravenOptions = {
     /extensions\//i,
     /^chrome:\/\//i,
     // Other plugins
-    /127\.0\.0\.1:4001\/isrunning/i,  // Cacaoweb
+    /127\.0\.0\.1:4001\/isrunning/i, // Cacaoweb
     /webappstoolbarba\.texthelp\.com\//i,
     /metrics\.itunes\.apple\.com\.edgesuite\.net\//i
   ]
 };
 
-export const sentry = Raven
- .config('https://dc748335cf1c45579d97e7a89e5a8c57@sentry.io/1207438', ravenOptions)
- .install()
+const sentry = Raven
+  .config('https://dc748335cf1c45579d97e7a89e5a8c57@sentry.io/1207438', ravenOptions)
+  .install();
+
+export default sentry;

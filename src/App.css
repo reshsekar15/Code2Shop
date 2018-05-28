@@ -59,7 +59,8 @@
 .sign-up-container {
   display: flex !important;
   align-items: center !important;
-  height: calc(100vh - 55px);
+  height: 100vh;
+  background-color: #ededed;
 }
 
 .sign-up-container div.ui.segment {
@@ -136,7 +137,22 @@ h1.fancy-font {
 
 .landing-page-jumbotron {
   position: relative;
-  max-height: 500px;
+  min-width: 100vw;
+  max-height: 1000px;
+  margin: 0 !important;
+  overflow: hidden;
+  padding: 66.6667% 0 0 0;
+}
+
+.landing-page-jumbotron img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .landing-page-jumbotron .floating-message {
@@ -148,9 +164,39 @@ h1.fancy-font {
   padding: 25px;
 }
 
+.landing-page-jumbotron .floating-message-mobile {
+  background-color: rgba(240, 240, 240, 0.6);
+  border-radius: 0;
+  position: absolute;
+  left: 5px;
+  width: calc(100vw - 10px);
+  height: calc(100% - 10px);
+  bottom: 5px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.landing-page-jumbotron .floating-message-mobile .content-to-center {
+  margin: auto auto;
+}
+
+.landing-page-jumbotron .floating-message-mobile .content-to-center .fancy-font {
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.c2s-logo {
+  font-size: 1.7rem !important;
+  letter-spacing: 1.5px;
+  font-weight: 500 !important;
+}
+
 .products-and-services {
-  background-color: #FFFAF9;
+  background-color: #FFFAF9 !important;
   padding: 20px !important;
+  margin: 0 !important;
 }
 
 .information-header-text {

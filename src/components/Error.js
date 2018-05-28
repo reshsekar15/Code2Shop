@@ -13,16 +13,15 @@ const Error = ({ title, content }) => (
         </p>
       </Grid.Column>
     </Grid.Row>
-    </Grid>
-      );
+  </Grid>);
 
 Error.propTypes = {
-        title: PropTypes.string,
+  title: PropTypes.string,
   content: PropTypes.string,
 };
 
 Error.defaultProps = {
-        title: 'Uh oh',
+  title: 'Uh oh',
   content: 'An unexpected error came up',
 };
 

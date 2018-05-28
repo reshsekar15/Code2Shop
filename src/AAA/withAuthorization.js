@@ -5,13 +5,14 @@ import { compose } from 'recompose';
 
 import { firebase } from '../Firebase';
 
-const withAuthorization = (authCondition) => (Component) => {
+const withAuthorization = authCondition => (Component) => {
   class WithAuthorization extends React.Component {
     componentDidMount() {
-      firebase.auth.onAuthStateChanged(authUser => {
+      firebase.auth.onAuthStateChanged((authUser) => {
         if (!authCondition(authUser)) {
-					this.props.history.push('/signup');
-					window.location.href = '/signup';
+          this.props.history.push('/signup');
+          // eslint-disable-next-line
+          window.location.href = '/signup';
         }
       });
     }
@@ -21,7 +22,7 @@ const withAuthorization = (authCondition) => (Component) => {
     }
   }
 
-  const mapStateToProps = (state) => ({
+  const mapStateToProps = state => ({
     authUser: state.sessionState.authUser,
   });
 
@@ -29,6 +30,6 @@ const withAuthorization = (authCondition) => (Component) => {
     withRouter,
     connect(mapStateToProps),
   )(WithAuthorization);
-}
+};
 
 export default withAuthorization;

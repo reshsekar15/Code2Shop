@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-class AccountContainer extends Component{
-  constructor(props){
+class AccountContainer extends Component {
+  constructor(props) {
     super(props);
 
-    this.state = {}
+    this.state = {};
   }
 
-  render(){
-    return <h1>Account Page!</h1>
+  render() {
+    return <h1>Account Page!</h1>;
   }
 }
 
