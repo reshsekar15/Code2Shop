@@ -40,6 +40,13 @@ const Index = () => (
       )}
     />
     <Route
+      exact
+      path="/challenges/:challengeid"
+      render={props => (
+        <Landing {...props} />
+      )}
+    />
+    <Route
       path="/about"
       render={props => (
         <Layout {...props}>

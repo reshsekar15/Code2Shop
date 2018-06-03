@@ -8,6 +8,7 @@ import progress from '../images/LandingPage/progress_png.png';
 import items from '../images/LandingPage/items_png.png';
 import Logo from '../logo/Code2Shop-Logo-Contrast.png';
 
+import InfoCard from '../components/Landing/InfoCard';
 import { brands } from '../brand-logos';
 
 import SignOutButton from '../components/UserManagement/SignOut';
@@ -159,37 +160,32 @@ class LandingPage extends Component {
           <p className="information-sub-header-text">here's how...</p>
           <Grid columns="equal" stackable>
             <Grid.Column>
-              <Segment basic style={{ width: '100%', height: '100%' }}>
-                <Image src={computer} centered size="small" />
-                <Header as="h3" icon textAlign="center">
-                  <Header.Content>Complete Challenges</Header.Content>
-                  <Header.Subheader>
-                    Learn to code with step by step instructions
-                  </Header.Subheader>
-                </Header>
-              </Segment>
+              <InfoCard
+                image={computer}
+                imageSize="small"
+                headerText="Complete Challenges"
+                subHeaderText="Learn to code with step by step instructions"
+                buttonText="Go to Challenges"
+                buttonHref="/challenges"
+              />
             </Grid.Column>
             <Grid.Column>
-              <Segment basic style={{ width: '100%', height: '100%' }}>
-                <Image src={progress} centered size="small" />
-                <Header as="h3" icon textAlign="center">
-                  <Header.Content>Earn Points</Header.Content>
-                  <Header.Subheader>
-                    Earn points by completing coding challenges
-                  </Header.Subheader>
-                </Header>
-              </Segment>
+              <InfoCard
+                image={progress}
+                imageSize="small"
+                headerText="Earn Points"
+                subHeaderText="Earn points by completing coding challenges"
+              />
             </Grid.Column>
             <Grid.Column>
-              <Segment basic style={{ width: '100%', height: '100%' }}>
-                <Image src={items} centered size="medium" />
-                <Header as="h3" icon textAlign="center">
-                  <Header.Content>Free Products & Services</Header.Content>
-                  <Header.Subheader>
-                    Redeem your points for gift cards & coupons
-                  </Header.Subheader>
-                </Header>
-              </Segment>
+              <InfoCard
+                image={items}
+                imageSize="medium"
+                headerText="Free Products & Services"
+                subHeaderText="Redeem your points for gift cards & coupons"
+                buttonText="Go to Products"
+                buttonHref="/products"
+              />
             </Grid.Column>
           </Grid>
         </Segment>
