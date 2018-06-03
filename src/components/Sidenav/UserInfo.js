@@ -15,9 +15,14 @@ class UserInfoCard extends Component {
   componentDidMount() {
     const { userInfo } = this.props;
 
-    const imageLink = userInfo.imageLink ? userInfo.imageLink : 'https://firebasestorage.googleapis.com/v0/b/code2shop-512a4.appspot.com/o/default-icon.png?alt=media&token=b3d2f48e-4c7d-44de-a56b-381e955c06a3';
-    // eslint-disable-next-line
-    this.setState({ userInfo, imageLink });
+    if (userInfo) {
+      const imageLink = userInfo.imageLink ? userInfo.imageLink : 'https://firebasestorage.googleapis.com/v0/b/code2shop-512a4.appspot.com/o/default-icon.png?alt=media&token=b3d2f48e-4c7d-44de-a56b-381e955c06a3';
+      // eslint-disable-next-line
+      this.setState({ userInfo, imageLink });
+    }
+    const imageLink = 'https://firebasestorage.googleapis.com/v0/b/code2shop-512a4.appspot.com/o/default-icon.png?alt=media&token=b3d2f48e-4c7d-44de-a56b-381e955c06a3';
+
+    this.setState({ imageLink });
   }
 
   render() {

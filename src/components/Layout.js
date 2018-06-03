@@ -2,16 +2,16 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import TopNav from './TopNav';
 import SideNav from './Sidenav/SideNav';
-import Loading from './Loading';
+// import Loading from './Loading';
 
 class App extends PureComponent {
   render() {
     const { match, userInfo } = this.props;
     const showSideNav = match.url === '/challenges';
 
-    if (!userInfo) {
-      return <Loading />;
-    }
+    // if (!userInfo) {
+    //   return <Loading />;
+    // }
 
     return (
       <div className="App">

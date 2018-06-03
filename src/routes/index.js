@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Challenges from '../components/Challenges';
+import ChallengesHome from '../container/ChallengesHome';
 import Rewards from '../components/Rewards';
 import AboutUs from '../components/AboutUs';
 import Account from '../container/Account';
@@ -20,7 +20,7 @@ const Index = () => (
       path="/challenges"
       render={props => (
         <Layout {...props}>
-          <Challenges {...props} />
+          <ChallengesHome {...props} />
         </Layout>
       )}
     />
