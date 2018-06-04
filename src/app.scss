@@ -195,6 +195,27 @@ h1.fancy-font{
   }
 }
 
+
+.challenges-content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .challenges-name{
+    font-size: 1.5rem;
+    letter-spacing: 1.25px;
+    font-weight: 600;
+    width: 100%;
+    color: rgba(33,33,33,1);
+  }
+
+  .challenges-icon{
+    float: right;
+    color: rgba(33,33,33,1);
+  }
+}
+
+
 .c2s-logo{
   font-size: 1.7rem !important;
   letter-spacing: 1.5px;
