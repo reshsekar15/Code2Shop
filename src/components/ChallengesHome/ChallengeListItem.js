@@ -20,7 +20,11 @@ class ChallangeListItem extends Component {
                   </Label>
                     <span className="challenges-name">{challangeText}</span>
                     {!isComplete && <Icon className="challenges-icon" name="trophy" size="large" />}
-                    {isComplete && <Icon className="challenges-icon" name="trophy" color="yellow" size="large" />}
+                    {isComplete && <span>
+                        <Icon className="challenges-icon" name="trophy" color="yellow" size="large" />
+                        <div class="pull-right">complete</div> 
+                    </span>}
+                    
                 </a>
             </Segment>
 
