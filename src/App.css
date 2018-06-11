@@ -206,6 +206,10 @@ h1.fancy-font {
   color: #212121;
 }
 
+.challenges-content .challenges-icon .complete-text {
+  font-weight: bold;
+}
+
 .c2s-logo {
   font-size: 1.7rem !important;
   letter-spacing: 1.5px;

@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import ChallengesHome from '../container/ChallengesHome';
+import ChallengePage from '../container/ChallengePage';
 import Rewards from '../components/Rewards';
 import AboutUs from '../components/AboutUs';
 import Account from '../container/Account';
@@ -17,6 +18,7 @@ import PasswordForget from '../container/PasswordForget';
 const Index = () => (
   <Switch>
     <Route
+      exact
       path="/challenges"
       render={props => (
         <Layout {...props}>
@@ -43,7 +45,9 @@ const Index = () => (
       exact
       path="/challenges/:challengeid"
       render={props => (
-        <Landing {...props} />
+        <Layout {...props}>
+          <ChallengePage {...props} />
+        </Layout>
       )}
     />
     <Route
