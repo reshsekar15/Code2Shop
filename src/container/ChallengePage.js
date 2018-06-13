@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { Grid, Container } from 'semantic-ui-react';
-import ChallengeCard from '../components/ChallengePage/ChallengeCard';
+import VariableCard from '../components/ChallengePage/CardTypes/VariableCard';
+import LoopCard from '../components/ChallengePage/CardTypes/LoopCard';
+import ConditionalCard from '../components/ChallengePage/CardTypes/ConditionalCard';
 
 class ChallengePage extends Component {
   state = {}
   render() {
     return (
-      <Container>
+      <Container style={{ paddingTop: '60px' }}>
         <Grid>
-          <Grid.Column>
-            <ChallengeCard />
-          </Grid.Column>
+          <VariableCard />
+          <LoopCard />
+          <ConditionalCard />
         </Grid>
       </Container>
     );

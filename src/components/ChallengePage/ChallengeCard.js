@@ -8,7 +8,7 @@ class ChallengeCard extends Component {
   render() {
     const { cardType } = this.state;
     return (
-      <Card>
+      <Card color="red" style={{ borderRadius: '5px' }}>
         <Card.Content>
           <Card.Header>
             {cardType}
