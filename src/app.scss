@@ -20,16 +20,12 @@ $c2s-aqua: #41E2BA;
   
 }
 
-.ui.menu .item:before{
-  background: none !important;
+body {
+  height: 0;
 }
 
-#root {
-  height: 100vh;
-
-  // * {
-  //   border-radius: 0;
-  // }
+.ui.menu .item:before{
+  background: none !important;
 }
 
 .sidenav {

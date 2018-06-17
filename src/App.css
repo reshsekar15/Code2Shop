@@ -12,12 +12,12 @@
   margin-left: 15px;
 }
 
-.ui.menu .item:before {
-  background: none !important;
+body {
+  height: 0;
 }
 
-#root {
-  height: 100vh;
+.ui.menu .item:before {
+  background: none !important;
 }
 
 .sidenav {

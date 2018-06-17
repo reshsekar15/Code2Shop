@@ -5,8 +5,6 @@ export async function initApp(dispatch) {
   try {
     dispatch({ type: actionTypes.updateStatus, loading: true });
 
-    console.log('here');
-
     const userInfo = await firebase.auth.onAuthStateChanged();
 
     dispatch({ type: actionTypes.initApplication, userInfo });
