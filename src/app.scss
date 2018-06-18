@@ -1,31 +1,46 @@
-
 @import url('https://fonts.googleapis.com/css?family=Sacramento');
-
 
 $top-nav-height: 55px;
 $sidenav-width: 300px;
+$background-color: #efefef;
 $c2s-aqua: #41E2BA;
 
-.top-navbar {
-  background: linear-gradient(to right, aqua , aquamarine)!important;
-  height: 55px;
-  display: flex;
-  .brand-logo {
-    height: 55px;
-    display: flex;
-    align-items: center;
-    margin-left: 15px;
-  }
-
-  
-}
+// .top-navbar {
+//   background: linear-gradient(to right, aqua , aquamarine)!important;
+//   height: 55px;
+//   display: flex;
+//   .brand-logo {
+//     height: 55px;
+//     display: flex;
+//     align-items: center;
+//     margin-left: 15px;
+//   }
+// }
 
 body {
   height: 0;
 }
 
+@media only screen and (min-width: 1200px){
+  .container {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+.App{
+  background-color: $background-color;
+  min-height: 100vh;
+}
+
 .ui.menu .item:before{
   background: none !important;
+}
+
+.main-content {
+  padding-top: calc(#{$top-nav-height} + 20px);
 }
 
 .sidenav {
@@ -37,72 +52,21 @@ body {
   top: $top-nav-height;
 }
 
-.challenges-container {
-  position: relative;
-  margin-top: $top-nav-height;
-  background-color: rgba(0,0,0,.05);
-  overflow: hidden;
-}
-
 .with-sidenav {
   width: calc(100vw - #{$sidenav-width});
   margin-left: $sidenav-width;
-}
-
-.partnership-container {
-  position: relative;
-  margin-top: 55px;
-  padding-top: 20px;
-  background-color: rgba(0,0,0,.05);
-}
-
-.set-min-height {
-  min-height: calc(100vh - #{$top-nav-height}) !important;
 }
 
 .sign-up-container{
   display: flex !important;
   align-items: center !important;
   height: 100vh;
-  background-color: #ededed;
+  background-color: $background-color;
 
   div.ui.segment{
     width: 100%;
     margin-top: -300px;
 
-  }
-}
-
-.main-user-info {
-  display: flex;
-  align-items: center;
-  height: 48px;
-  line-height: 48px;
-  margin: 15px;
-  justify-content: space-between;
-
-  .user-image {
-    border-radius: 50%;
-  }
-
-  .user-name {
-    font-size: 1.6rem;
-    font-weight: 600;
-    display:block;
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow: ellipsis;
-  }
-}
-
-.side-info-tab{
-  font-size: 1.2rem;
-  padding: 15px 20px !important;
-  font-weight: 660;
-  .label-value{
-    margin-bottom: 5px;
-    font-size: 1.4rem !important;
-    color: darken(aquamarine, 15%);
   }
 }
 
@@ -142,7 +106,7 @@ h1.fancy-font{
 
 .landing-page-jumbotron{
   position: relative;
-  min-width: 100vw;
+  //min-width: 100vw;
   max-height: 1000px;
   //padding: 0 !important;
   margin: 0 !important;
@@ -168,25 +132,28 @@ h1.fancy-font{
     bottom: 40px;
     padding: 25px;
   }
-  .floating-message-mobile{
-    background-color: rgba(240,240,240,.6);
-    border-radius: 0;
-    position: absolute;
-    left: 5px;
-    width: calc(100vw - 10px);
-    height: calc(100% - 10px);
-    bottom: 5px;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-content: center;
 
-    .content-to-center{
-      .fancy-font{
-        font-size: 3rem;
-        font-weight: 500;
+  @media only screen and (max-width: 767px){
+    .floating-message{
+      background-color: rgba(240,240,240,.6);
+      border-radius: 0;
+      position: absolute;
+      left: 5px;
+      width: calc(100vw - 10px);
+      height: calc(100% - 10px);
+      bottom: 5px;
+      padding: 5px;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+  
+      .content-to-center{
+        .fancy-font{
+          font-size: 3rem;
+          font-weight: 500;
+        }
+        margin: auto auto;
       }
-      margin: auto auto;
     }
   }
 }
@@ -217,7 +184,7 @@ h1.fancy-font{
 
 
 .c2s-logo{
-  font-size: 1.7rem !important;
+  font-size: 1.2rem !important;
   letter-spacing: 1.5px;
   font-weight: 500 !important;
 }

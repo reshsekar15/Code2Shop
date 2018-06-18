@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Statistic, Card, Container } from 'semantic-ui-react';
 import RedeemCard from './RedeemCard';
 
-import { brands } from '../brand-logos';
+import { brands } from '../../brand-logos';
 
 class RewardsPage extends Component {
   constructor() {

@@ -3,14 +3,15 @@ import { Switch, Route } from 'react-router-dom';
 
 import ChallengesHome from '../container/ChallengesHome';
 import ChallengePage from '../container/ChallengePage';
-import Rewards from '../components/Rewards';
-import AboutUs from '../components/AboutUs';
+import Rewards from '../container/Rewards';
+import AboutUs from '../container/About';
 import Account from '../container/Account';
 import Landing from '../container/Landing';
-import ContactUs from '../components/ContactUs';
+import ContactUs from '../container/Contact';
 
 import Layout from '../components/Layout';
 import Error from '../components/Error';
+import PageNotFound from '../components/PageNotFound';
 import SignUp from '../container/SignUp';
 import SignIn from '../container/SignIn';
 import PasswordForget from '../container/PasswordForget';
@@ -21,80 +22,100 @@ const Index = () => (
       exact
       path="/challenges"
       render={props => (
-        <Layout {...props}>
-          <ChallengesHome {...props} />
-        </Layout>
+        <Error>
+          <Layout {...props}>
+            <ChallengesHome {...props} />
+          </Layout>
+        </Error>
       )}
     />
     <Route
       path="/Rewards"
       render={props => (
-        <Layout {...props}>
-          <Rewards {...props} />
-        </Layout>
+        <Error>
+          <Layout {...props}>
+            <Rewards {...props} />
+          </Layout>
+        </Error>
       )}
     />
     <Route
       exact
       path="/"
       render={props => (
-        <Landing {...props} />
+        <Layout {...props}>
+          <Landing {...props} />
+        </Layout>
       )}
     />
     <Route
       exact
       path="/challenges/:challengeid"
       render={props => (
-        <Layout {...props}>
-          <ChallengePage {...props} />
-        </Layout>
+        <Error>
+          <Layout {...props}>
+            <ChallengePage {...props} />
+          </Layout>
+        </Error>
       )}
     />
     <Route
       path="/about"
       render={props => (
-        <Layout {...props}>
-          <AboutUs {...props} />
-        </Layout>
+        <Error>
+          <Layout {...props}>
+            <AboutUs {...props} />
+          </Layout>
+        </Error>
       )}
     />
     <Route
       path="/contact"
       render={props => (
-        <Layout {...props}>
-          <ContactUs {...props} />
-        </Layout>
+        <Error>
+          <Layout {...props}>
+            <ContactUs {...props} />
+          </Layout>
+        </Error>
       )}
     />
     <Route
       path="/signup"
       render={props => (
-        <SignUp {...props} />
+        <Error>
+          <SignUp {...props} />
+        </Error>
       )}
     />
     <Route
       path="/signin"
       render={props => (
-        <SignIn {...props} />
+        <Error>
+          <SignIn {...props} />
+        </Error>
       )}
     />
     <Route
       path="/passwordforget"
       render={props => (
-        <PasswordForget {...props} />
+        <Error>
+          <PasswordForget {...props} />
+        </Error>
       )}
     />
     <Route
       path="/account"
       render={props => (
-        <Layout {...props}>
-          <Account {...props} />
-        </Layout>
+        <Error>
+          <Layout {...props}>
+            <Account {...props} />
+          </Layout>
+        </Error>
       )}
     />
     <Route
       render={props => (
-        <Error {...props} title="404" content="Sorry, the route you requested does not exist" />
+        <PageNotFound {...props} />
       )}
     />
   </Switch>

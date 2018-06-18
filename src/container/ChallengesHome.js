@@ -54,7 +54,7 @@ class ChallengesHomePage extends Component {
   }
   render() {
     return (
-      <Container text>
+      <Container>
         <Grid padded>
           <Grid.Column>
             <Header as="h1"> Challenges </Header>

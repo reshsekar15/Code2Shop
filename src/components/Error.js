@@ -1,28 +1,62 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Grid } from 'semantic-ui-react';
+import React, { Component } from 'react';
+import { Grid, Button, Card } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
-const Error = ({ title, content }) => (
-  <Grid columns={1}>
-    <Grid.Row>
-      <Grid.Column>
-        <h2>{title}</h2>
-        <p>{content}</p>
-        <p>
-          <a href="/" className="btn btn-primary">Go Back to Job List</a>
-        </p>
-      </Grid.Column>
-    </Grid.Row>
-  </Grid>);
+import sentry from '../helpers/sentry';
 
-Error.propTypes = {
-  title: PropTypes.string,
-  content: PropTypes.string,
-};
+class ErrorHandler extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { error: null };
+  }
 
-Error.defaultProps = {
-  title: 'Uh oh',
-  content: 'An unexpected error came up',
-};
+  componentDidCatch(error, errorInfo) {
+    const { state, state: { app: { userInfo } } } = this.props;
+    this.setState({ error });
+    sentry.captureException(error, {
+      extra: {
+        userInfo,
+        errorInfo,
+        state
+      }
+    });
+  }
 
-export default Error;
+  render() {
+    const { state: { status: { error } } } = this.props;
+
+    if (!!this.state.error || !!error) {
+      return (
+        <Grid columns={1} centered style={{ height: '100vh' }}>
+          <Grid.Column
+            computer={6}
+            table={10}
+            mobile={16}
+            textAlign="center"
+            className="middle-align-content"
+          >
+            <Card>
+              <Card.Content>
+                <Card.Header>Oops! Something Happened!</Card.Header>
+                <Card.Description>
+                  Our team has been notified, but click here fill out a report.
+                </Card.Description>
+              </Card.Content>
+              <Card.Content extra>
+                <Button fluid onClick={() => sentry.showReportDialog()}>
+                  Send Error Report
+                </Button>
+              </Card.Content>
+            </Card>
+          </Grid.Column>
+        </Grid>);
+    }
+
+    return this.props.children;
+  }
+}
+
+export default connect(
+  state => ({ state }),
+  null
+)(ErrorHandler);

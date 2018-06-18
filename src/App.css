@@ -1,23 +1,27 @@
 @import url("https://fonts.googleapis.com/css?family=Sacramento");
-.top-navbar {
-  background: linear-gradient(to right, aqua, aquamarine) !important;
-  height: 55px;
-  display: flex;
-}
-
-.top-navbar .brand-logo {
-  height: 55px;
-  display: flex;
-  align-items: center;
-  margin-left: 15px;
-}
-
 body {
   height: 0;
 }
 
+@media only screen and (min-width: 1200px) {
+  .container {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.App {
+  background-color: #efefef;
+  min-height: 100vh;
+}
+
 .ui.menu .item:before {
   background: none !important;
+}
+
+.main-content {
+  padding-top: calc(55px + 20px);
 }
 
 .sidenav {
@@ -29,73 +33,21 @@ body {
   top: 55px;
 }
 
-.challenges-container {
-  position: relative;
-  margin-top: 55px;
-  background-color: rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-}
-
 .with-sidenav {
   width: calc(100vw - 300px);
   margin-left: 300px;
-}
-
-.partnership-container {
-  position: relative;
-  margin-top: 55px;
-  padding-top: 20px;
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-.set-min-height {
-  min-height: calc(100vh - 55px) !important;
 }
 
 .sign-up-container {
   display: flex !important;
   align-items: center !important;
   height: 100vh;
-  background-color: #ededed;
+  background-color: #efefef;
 }
 
 .sign-up-container div.ui.segment {
   width: 100%;
   margin-top: -300px;
-}
-
-.main-user-info {
-  display: flex;
-  align-items: center;
-  height: 48px;
-  line-height: 48px;
-  margin: 15px;
-  justify-content: space-between;
-}
-
-.main-user-info .user-image {
-  border-radius: 50%;
-}
-
-.main-user-info .user-name {
-  font-size: 1.6rem;
-  font-weight: 600;
-  display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.side-info-tab {
-  font-size: 1.2rem;
-  padding: 15px 20px !important;
-  font-weight: 660;
-}
-
-.side-info-tab .label-value {
-  margin-bottom: 5px;
-  font-size: 1.4rem !important;
-  color: #33ffba;
 }
 
 .fancy-font {
@@ -133,7 +85,6 @@ h1.fancy-font {
 
 .landing-page-jumbotron {
   position: relative;
-  min-width: 100vw;
   max-height: 1000px;
   margin: 0 !important;
   overflow: hidden;
@@ -160,27 +111,27 @@ h1.fancy-font {
   padding: 25px;
 }
 
-.landing-page-jumbotron .floating-message-mobile {
-  background-color: rgba(240, 240, 240, 0.6);
-  border-radius: 0;
-  position: absolute;
-  left: 5px;
-  width: calc(100vw - 10px);
-  height: calc(100% - 10px);
-  bottom: 5px;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-
-.landing-page-jumbotron .floating-message-mobile .content-to-center {
-  margin: auto auto;
-}
-
-.landing-page-jumbotron .floating-message-mobile .content-to-center .fancy-font {
-  font-size: 3rem;
-  font-weight: 500;
+@media only screen and (max-width: 767px) {
+  .landing-page-jumbotron .floating-message {
+    background-color: rgba(240, 240, 240, 0.6);
+    border-radius: 0;
+    position: absolute;
+    left: 5px;
+    width: calc(100vw - 10px);
+    height: calc(100% - 10px);
+    bottom: 5px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+  .landing-page-jumbotron .floating-message .content-to-center {
+    margin: auto auto;
+  }
+  .landing-page-jumbotron .floating-message .content-to-center .fancy-font {
+    font-size: 3rem;
+    font-weight: 500;
+  }
 }
 
 .challenges-content {
@@ -207,7 +158,7 @@ h1.fancy-font {
 }
 
 .c2s-logo {
-  font-size: 1.7rem !important;
+  font-size: 1.2rem !important;
   letter-spacing: 1.5px;
   font-weight: 500 !important;
 }

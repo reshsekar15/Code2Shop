@@ -16,7 +16,7 @@ const SignInPage = ({ history }) => (
         minHeight: '100vh',
       }}
     >
-      <Segment style={{ width: '600px', marginTop: '-600px' }}>
+      <Segment style={{ width: '600px', marginTop: '-30%' }}>
         <h1>Sign In</h1>
         <SignInForm history={history} />
         <PasswordForgetLink />

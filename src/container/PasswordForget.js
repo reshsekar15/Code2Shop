@@ -13,7 +13,7 @@ const PasswordForgetPage = ({ history }) => (
         minHeight: '100vh',
       }}
     >
-      <Segment padded style={{ width: '600px', marginTop: '-600px' }}>
+      <Segment padded style={{ width: '600px', marginTop: '-30%' }}>
         <h1>Password Forget</h1>
         <PasswordForgetForm history={history} />
       </Segment>

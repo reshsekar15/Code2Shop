@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import { Card, Button, Grid, Icon, Menu } from 'semantic-ui-react';
+import { Card, Button, Grid, Icon } from 'semantic-ui-react';
 
 import CardWrapper from './CardWrapper';
-import ConditionCheck from './ConditionCheck';
+import LoopCheck from './LoopCheck';
 
 class LoopCard extends Component {
   state = {
-    showMenu: true,
     selectedCards: [{
       cardType: 'variable',
-      startingValue: 0
+      variableName: 'x',
+      variableValue: '0'
+    }, {
+      cardType: 'variable',
+      variableName: 'y',
+      variableValue: '100'
     }]
   }
 
@@ -18,7 +22,7 @@ class LoopCard extends Component {
   }
 
   render() {
-    const { showMenu, selectedCards } = this.state;
+    const { selectedCards } = this.state;
     return (
       <Grid.Column width={16}>
         <Card fluid color="green">
@@ -32,18 +36,18 @@ class LoopCard extends Component {
             <Grid stackable>
               <Grid.Row>
                 <Grid.Column width={16}>
-                  <ConditionCheck conditionType="While" />
+                  <LoopCheck conditionType="While" />
                 </Grid.Column>
               </Grid.Row>
               {selectedCards.map(card => (
-                <Grid.Row>
-                  <Grid.Column floated="right" width={14}>
+                <Grid.Row centered>
+                  <Grid.Column width={12}>
                     <CardWrapper {...card} />
                   </Grid.Column>
                 </Grid.Row>
               ))}
-              <Grid.Row>
-                <Grid.Column floated="right" width={14}>
+              <Grid.Row centered>
+                <Grid.Column width={12}>
                   <Button
                     fluid
                     onClick={() => this.toggleMenu()}
@@ -52,19 +56,6 @@ class LoopCard extends Component {
                     <Icon name="add" />
                     Add Component
                   </Button>
-                  {showMenu && (
-                    <Menu fluid floating vertical>
-                      <Menu.Item>
-                        Variable
-                      </Menu.Item>
-                      <Menu.Item>
-                        Conditional
-                      </Menu.Item>
-                      <Menu.Item>
-                        Loop
-                      </Menu.Item>
-                    </Menu>
-                  )}
                 </Grid.Column>
               </Grid.Row>
             </Grid>

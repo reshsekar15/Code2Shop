@@ -103,7 +103,7 @@ class SignUpForm extends Component {
       email.indexOf('@') === -1;
 
     return (
-      <Segment padded style={{ width: '600px', marginTop: '-600px' }}>
+      <Segment padded style={{ width: '600px', marginTop: '-30%' }}>
         <h1>Sign Up</h1>
         <Form onSubmit={this.onSubmit}>
           <Form.Input

@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Grid, Button, Icon } from 'semantic-ui-react';
 
 import CardWrapper from './CardWrapper';
-import ConditionCheck from './ConditionCheck';
+import ConditionCheck from './ConditionalCheck';
 
 // eslint-disable-next-line
 const ConditionalCard = ({ cardGuid, variableOptions, conditionalObject, handleUpdate, handleAddItem }) => (

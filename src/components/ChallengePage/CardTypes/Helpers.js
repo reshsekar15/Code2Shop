@@ -21,11 +21,11 @@ export function operatorFunctions(operator, v1, v2) {
     case 'multiply':
       return v1 * v2;
     case 'divide':
-      return v1 * v2;
+      return v1 / v2;
     case 'add':
-      return v1 * v2;
+      return v1 + v2;
     case 'subtract':
-      return v1 * v2;
+      return v1 - v2;
     default:
       return v1;
   }
@@ -60,3 +60,24 @@ export const truthOperators = cardGuid => ([{
   text: '>=',
   value: 'greater_than_or_equal_to',
 }]);
+
+export function truthFunctions(operator, v1, v2) {
+  switch (operator) {
+    case 'equal_to':
+      return v1 === v2;
+    case 'not_equal_to':
+      return v1 !== v2;
+    case 'like':
+      return String(v1).indexOf(v2) > -1;
+    case 'less_than':
+      return v1 < v2;
+    case 'less_than_or_equal_to':
+      return v1 <= v2;
+    case 'greater_than':
+      return v1 > v2;
+    case 'greater_than_or_equal_to':
+      return v1 >= v2;
+    default:
+      return v1;
+  }
+}
