@@ -15,7 +15,13 @@ export async function initChallengeList(dispatch) {
 }
 
 export const actionCreators = {
-  initApp: () => async (dispatch, getState) => {
-    await initApp(dispatch, getState);
+  initChallengeList: () => async (dispatch, getState) => {
+    await initChallengeList(dispatch, getState);
+  },
+  showChallengeCardModal: () => (dispatch) => {
+    dispatch({ type: actionTypes.showChallengeModal });
+  },
+  closeChallengeCardModal: () => (dispatch) => {
+    dispatch({ type: actionTypes.closeChallengeModal });
   },
 };

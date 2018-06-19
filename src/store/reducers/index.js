@@ -1,5 +1,6 @@
 import { routerReducer } from 'react-router-redux';
 import app from './app';
+import challenge from './challenge';
 import status from './status';
 
 const rehydrated = (state = false, action) => {
@@ -16,4 +17,5 @@ export default {
   rehydrated,
   app,
   status,
+  challenge,
 };

@@ -9,8 +9,8 @@ const Footer = () => (
           <Grid.Column width={3}>
             <Header inverted as="h4" content="About" />
             <List link inverted>
-              <List.Item as="a">About Us</List.Item>
-              <List.Item as="a">Contact Us</List.Item>
+              <List.Item as="a" href="/about">About Us</List.Item>
+              <List.Item as="a" href="/contact">Contact Us</List.Item>
             </List>
           </Grid.Column>
           <Grid.Column width={13}>

@@ -43,8 +43,12 @@ const ravenOptions = {
   ]
 };
 
+// const sentry = Raven
+//   .config('https://dc748335cf1c45579d97e7a89e5a8c57@sentry.io/1207438', ravenOptions)
+//   .install();
+
 const sentry = Raven
-  .config('https://dc748335cf1c45579d97e7a89e5a8c57@sentry.io/1207438', ravenOptions)
+  .config('', ravenOptions)
   .install();
 
 export default sentry;
