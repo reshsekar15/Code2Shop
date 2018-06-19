@@ -37,19 +37,19 @@ const ChallengeCardModal = (props) => {
             <Grid.Column width={16}>
               <Image
                 src={VariableCard}
-                onClick={() => addChallengeCard(VariableSchema)}
+                onClick={() => addChallengeCard(VariableSchema())}
               />
             </Grid.Column>
             <Grid.Column width={16}>
               <Image
                 src={ModifierCard}
-                onClick={() => addChallengeCard(ModifierSchema)}
+                onClick={() => addChallengeCard(ModifierSchema())}
               />
             </Grid.Column>
             <Grid.Column width={16}>
               <Image
                 src={LoopCard}
-                onClick={() => addChallengeCard(LoopSchema)}
+                onClick={() => addChallengeCard(LoopSchema())}
               />
             </Grid.Column>
           </Grid>

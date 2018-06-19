@@ -1,11 +1,15 @@
 import actionTypes from '../actions/actionTypes';
+import { guid } from '../../helpers';
 
 const initialState = {
   listOfChallenges: [],
   selectedChallenge: null,
   showCardSelectMenu: false,
   challengeRenderStructure: {
-    root: null
+    type: 'root',
+    guid: guid(),
+    isRemovable: false,
+    children: [],
   },
   variableList: [],
   challengeCompileStructure: [],
@@ -14,6 +18,7 @@ const initialState = {
 };
 
 export default function challengeReducer(state = initialState, action) {
+  console.log(action);
   switch (action.type) {
     case actionTypes.initChallengeList:
       return {

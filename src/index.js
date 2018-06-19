@@ -12,7 +12,7 @@ import Routes from './routes/index';
 import Loading from './components/Loading';
 
 import './styles/App.css';
-import './styles/semantic.css';
+// import './styles/semantic.css';
 
 const { persistor, store } = configureStore();
 
