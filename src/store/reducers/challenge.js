@@ -4,9 +4,11 @@ const initialState = {
   listOfChallenges: [],
   selectedChallenge: null,
   showCardSelectMenu: false,
-  challengeRenderStructure: null,
-  variableList: null,
-  challengeCompileStructure: null,
+  challengeRenderStructure: {
+    root: null
+  },
+  variableList: [],
+  challengeCompileStructure: [],
   challengeListLoading: true,
   challengePageLoading: true,
 };

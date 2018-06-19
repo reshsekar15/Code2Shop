@@ -1,10 +1,25 @@
 import React from 'react';
-import { Modal, Button, Header } from 'semantic-ui-react';
+import { Modal, Grid, Image } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { actionCreators } from '../../store/actions/challenge_Actions';
+
+import VariableCard from '../../images/ChallengeCards/VariableCard.PNG';
+import ModifierCard from '../../images/ChallengeCards/ModifierCard.PNG';
+import ConditionalCard from './CardTypes/ConditionalCard';
+import LoopCard from '../../images/ChallengeCards/LoopCard.PNG';
+
+import VariableSchema from './CardTypes/Schema/Variable';
+import ModifierSchema from './CardTypes/Schema/Modifier';
+import ConditionalSchema from './CardTypes/Schema/Conditional';
+import LoopSchema from './CardTypes/Schema/Loop';
 
 const ChallengeCardModal = (props) => {
   const {
     showCardSelectMenu,
-    closeChallengeCardModal
+    closeChallengeCardModal,
+    addChallengeCard
   } = props;
   console.log(props);
   return (
@@ -12,21 +27,39 @@ const ChallengeCardModal = (props) => {
       size="large"
       open={showCardSelectMenu}
       onClose={() => closeChallengeCardModal()}
+      closeIcon
+      style={{ marginTop: '0' }}
     >
-      <Modal.Header>Select a Photo</Modal.Header>
-      <Modal.Content image>
+      <Modal.Header>Select a Component</Modal.Header>
+      <Modal.Content>
         <Modal.Description>
-          <Header>Default Profile Image</Header>
-          <p>We've found the following gravatar image associated with your e-mail address.</p>
-          <p>Is it okay to use this photo?</p>
+          <Grid>
+            <Grid.Column width={16}>
+              <Image
+                src={VariableCard}
+                onClick={() => addChallengeCard(VariableSchema)}
+              />
+            </Grid.Column>
+            <Grid.Column width={16}>
+              <Image
+                src={ModifierCard}
+                onClick={() => addChallengeCard(ModifierSchema)}
+              />
+            </Grid.Column>
+            <Grid.Column width={16}>
+              <Image
+                src={LoopCard}
+                onClick={() => addChallengeCard(LoopSchema)}
+              />
+            </Grid.Column>
+          </Grid>
         </Modal.Description>
       </Modal.Content>
-      <Modal.Actions>
-        <Button negative>No</Button>
-        <Button positive icon='checkmark' labelPosition='right' content='Yes' />
-      </Modal.Actions>
     </Modal>
   );
 };
 
-export default ChallengeCardModal;
+export default connect(
+  null,
+  dispatch => bindActionCreators({ ...actionCreators }, dispatch)
+)(ChallengeCardModal);

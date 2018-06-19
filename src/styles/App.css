@@ -24,6 +24,10 @@ body {
   padding-top: calc(55px + 20px);
 }
 
+.nontransition {
+  display: flex !important;
+}
+
 .sidenav {
   margin: 0 !important;
   width: 300px !important;

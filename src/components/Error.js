@@ -27,7 +27,7 @@ class ErrorHandler extends Component {
 
     if (!!this.state.error || !!error) {
       return (
-        <Grid columns={1} centered style={{ height: '100vh' }}>
+        <Grid columns={1} centered>
           <Grid.Column
             computer={6}
             table={10}

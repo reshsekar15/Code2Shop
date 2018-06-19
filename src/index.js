@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/es/integration/react';
-import 'semantic-ui-css/semantic.min.css';
+import 'semantic-ui-css/semantic.css';
 
 import configureStore from './store/configureStore';
 import registerServiceWorker from './registerServiceWorker';
@@ -11,7 +11,8 @@ import Routes from './routes/index';
 
 import Loading from './components/Loading';
 
-import './App.css';
+import './styles/App.css';
+import './styles/semantic.css';
 
 const { persistor, store } = configureStore();
 

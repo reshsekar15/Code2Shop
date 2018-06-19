@@ -7,38 +7,10 @@ import { actionCreators } from '../store/actions/challenge_Actions';
 import CardWrapper from '../components/ChallengePage/CardTypes/CardWrapper';
 import ChallengeCardModal from '../components/ChallengePage/ChallengeCardModal';
 
-
-// const fakeData = [{
-//   cardType: 'variable',
-//   cardGuid: '2r209h3rgjnsdf-gsubn3adsfa',
-//   variableName: 'variable 1',
-//   variableValue: '0'
-// }, {
-//   cardType: 'conditional',
-//   cardGuid: '1239re8hjvsdvs-023rijbasdv2',
-//   conditionalObject: [{
-//     conditions: [{
-//       conditionType: 'If',
-//       variableName: 'variable 1',
-//       variableTruthOperator: 'equal',
-//       variableTruthValue: '100'
-//     }],
-//     actions: [{
-//       cardType: 'variable',
-//       cardGuid: '2r209fhbwnsdf-gsubn3adsfa',
-//       variableName: 'variable 2',
-//       variableValue: '0'
-//     }, {
-//       cardType: 'variable',
-//       cardGuid: '2r209fhbwnsdf-gsubn3adsfa',
-//       variableName: 'variable 2',
-//       variableValue: '0'
-//     }]
-//   }]
-// }];
-
 class ChallengePage extends Component {
-
+  state = {
+    isMenuOpen: true
+  }
   render() {
     const { showChallengeCardModal } = this.props;
     return (
@@ -89,10 +61,9 @@ class ChallengePage extends Component {
           </Grid.Row>
         </Grid>
       </Container>
-    )
+    );
   }
-};
-
+}
 
 export default connect(
   state => ({ ...state.challenge }),

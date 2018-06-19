@@ -29,7 +29,6 @@ body {
   }
 }
 
-
 .App{
   background-color: $background-color;
   min-height: 100vh;
@@ -41,6 +40,10 @@ body {
 
 .main-content {
   padding-top: calc(#{$top-nav-height} + 20px);
+}
+
+.nontransition{
+  display: flex !important;
 }
 
 .sidenav {
