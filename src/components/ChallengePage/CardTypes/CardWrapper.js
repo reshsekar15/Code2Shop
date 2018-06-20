@@ -1,33 +1,39 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import VariableCard from './VariableCard';
 import ModifierCard from './ModifierCard';
 import ConditionalCard from './ConditionalCard';
 import LoopCard from './LoopCard';
 
 const CardWrapper = (props) => {
-  const { cardType } = props;
+  const { cardType, variableList, cardGuid } = props;
 
-  console.log(props);
+  const cardData = variableList.find(v => v.cardGuid === cardGuid);
+  console.log(props, cardData);
   switch (cardType) {
     case 'variable':
       return (
-        <VariableCard {...props} />
+        <VariableCard {...props} {...cardData} />
       );
     case 'modifier':
       return (
-        <ModifierCard {...props} />
+        <ModifierCard {...props} {...cardData} />
       );
     case 'conditional':
       return (
-        <ConditionalCard {...props} />
+        <ConditionalCard {...props} {...cardData} />
       );
     case 'loop':
       return (
-        <LoopCard {...props} />
+        <LoopCard {...props} {...cardData} />
       );
     default:
       return null;
   }
 };
 
-export default CardWrapper;
+export default connect(
+  state => state.challenge,
+  null
+)(CardWrapper);

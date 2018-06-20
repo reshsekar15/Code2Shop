@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Card, Button, Grid, Icon } from 'semantic-ui-react';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../../../store/actions/challenge_Actions';
+
 import CardWrapper from './CardWrapper';
 import LoopCheck from './LoopCheck';
 
@@ -22,7 +26,7 @@ class LoopCard extends Component {
   }
 
   render() {
-    const { selectedCards } = this.state;
+    const { cardChildren, showChallengeCardModal } = this.props;
     return (
       <Grid.Column width={16}>
         <Card fluid color="green">
@@ -39,7 +43,7 @@ class LoopCard extends Component {
                   <LoopCheck conditionType="While" />
                 </Grid.Column>
               </Grid.Row>
-              {selectedCards.map(card => (
+              {cardChildren.map(card => (
                 <Grid.Row centered>
                   <Grid.Column width={12}>
                     <CardWrapper {...card} />
@@ -50,7 +54,7 @@ class LoopCard extends Component {
                 <Grid.Column width={12}>
                   <Button
                     fluid
-                    onClick={() => this.toggleMenu()}
+                    onClick={() => showChallengeCardModal()}
                     size="big"
                   >
                     <Icon name="add" />
@@ -67,4 +71,7 @@ class LoopCard extends Component {
   }
 }
 
-export default LoopCard;
+export default connect(
+  null,
+  dispatch => bindActionCreators({ ...actionCreators }, dispatch)
+)(LoopCard);

@@ -21,7 +21,7 @@ const ChallengeCardModal = (props) => {
     closeChallengeCardModal,
     addChallengeCard
   } = props;
-  console.log(props);
+
   return (
     <Modal
       size="large"
@@ -44,6 +44,12 @@ const ChallengeCardModal = (props) => {
               <Image
                 src={ModifierCard}
                 onClick={() => addChallengeCard(ModifierSchema())}
+              />
+            </Grid.Column>
+            <Grid.Column width={16}>
+              <Image
+                src={ConditionalCard}
+                onClick={() => addChallengeCard(ConditionalSchema())}
               />
             </Grid.Column>
             <Grid.Column width={16}>

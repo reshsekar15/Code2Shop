@@ -33,17 +33,22 @@ export default function challengeReducer(state = initialState, action) {
     case actionTypes.updateChallengePage:
       return {
         ...state,
-        challengeRenderStructure: action.renderStructure,
-        challengeCompileStructure: action.compileStructure,
+        challengeRenderStructure: action.challengeRenderStructure,
+        challengeCompileStructure: action.challengeCompileStructure,
         variableList: action.variableList
       };
     case actionTypes.addChallengeCard:
       return {
         ...state,
-        challengeRenderStructure: action.renderStructure,
-        challengeCompileStructure: action.compileStructure,
+        challengeRenderStructure: action.challengeRenderStructure,
+        challengeCompileStructure: action.challengeCompileStructure,
         variableList: action.variableList,
         showCardSelectMenu: false
+      };
+    case actionTypes.updateChallengeCard:
+      return {
+        ...state,
+        variableList: action.variableList
       };
     case actionTypes.showChallengeModal:
       return {
