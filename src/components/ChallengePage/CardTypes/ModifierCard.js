@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Grid, Dropdown, Header, Icon } from 'semantic-ui-react';
+import { Card, Grid, Dropdown, Header, Icon, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../../../store/actions/challenge_Actions';
@@ -26,6 +26,7 @@ class ModifierCard extends Component {
         text: v.variableName
       }));
 
+      // eslint-disable-next-line
     this.setState({
       settingVarList: availableList,
       modifierNameList: availableList,
@@ -45,6 +46,7 @@ class ModifierCard extends Component {
       modifierOperator,
       modifierValue,
       updateChallengeCard,
+      removeChallengeCard
     } = this.props;
     const {
       settingVarList,
@@ -57,7 +59,16 @@ class ModifierCard extends Component {
           <Card.Content>
             <Card.Header>
               Modifier
-              <Icon name="trash alternate" color="red" style={{ float: 'right' }} />
+              <Button
+                icon
+                onClick={() => removeChallengeCard(cardGuid)}
+                basic
+                floated="right"
+                color="red"
+                size="small"
+              >
+                <Icon name="trash alternate" color="red" />
+              </Button>
             </Card.Header>
           </Card.Content>
           <Card.Content>
@@ -99,7 +110,7 @@ class ModifierCard extends Component {
                     fluid
                     search
                     selection
-                    options={operatorOptions}
+                    options={operatorOptions()}
                     className="card-inputs"
                     placeholder="Operation..."
                     value={modifierOperator}

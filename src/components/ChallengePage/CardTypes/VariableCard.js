@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Grid, Input, Header, Icon } from 'semantic-ui-react';
+import { Card, Grid, Input, Header, Icon, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../../../store/actions/challenge_Actions';
@@ -10,7 +10,8 @@ const VariableCard = (props) => {
     cardGuid,
     variableName,
     variableValue,
-    updateChallengeCard
+    updateChallengeCard,
+    removeChallengeCard
   } = props;
   console.log(props, variableName, variableValue);
   return (
@@ -19,7 +20,16 @@ const VariableCard = (props) => {
         <Card.Content>
           <Card.Header>
             Variable
-            <Icon name="trash alternate" color="red" style={{ float: 'right' }} />
+            <Button
+              icon
+              onClick={() => removeChallengeCard(cardGuid)}
+              basic
+              floated="right"
+              color="red"
+              size="small"
+            >
+              <Icon name="trash alternate" color="red" />
+            </Button>
           </Card.Header>
         </Card.Content>
         <Card.Content>

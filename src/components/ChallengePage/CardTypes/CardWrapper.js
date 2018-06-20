@@ -8,25 +8,23 @@ import LoopCard from './LoopCard';
 
 const CardWrapper = (props) => {
   const { cardType, variableList, cardGuid } = props;
-
-  const cardData = variableList.find(v => v.cardGuid === cardGuid);
-  console.log(props, cardData);
+  const children = variableList.filter(v => v.parentGuid === cardGuid);
   switch (cardType) {
     case 'variable':
       return (
-        <VariableCard {...props} {...cardData} />
+        <VariableCard {...props} />
       );
     case 'modifier':
       return (
-        <ModifierCard {...props} {...cardData} />
+        <ModifierCard {...props} />
       );
     case 'conditional':
       return (
-        <ConditionalCard {...props} {...cardData} />
+        <ConditionalCard {...props} cardChildren={children} />
       );
     case 'loop':
       return (
-        <LoopCard {...props} {...cardData} />
+        <LoopCard {...props} cardChildren={children} />
       );
     default:
       return null;

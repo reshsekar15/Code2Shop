@@ -27,42 +27,42 @@ export async function initChallengeList(dispatch) {
   }
 }
 
-export function addChallengeCard(cardSchema, parentGuid = [], dispatch, getState) {
+export function addChallengeCard(cardSchema, dispatch, getState) {
   try {
     const {
-      variableList
+      variableList,
+      parentGuid
     } = getState().challenge;
 
-    variableList.push(cardSchema);
+    variableList.push({ ...cardSchema, parentGuid });
 
-    const {
-      challengeRenderStructure
-    } = getState().challenge;
+    // const {
+    //   challengeRenderStructure
+    // } = getState().challenge;
 
-    if (parentGuid.length > 0) {
-      let branchChild = challengeRenderStructure;
-      parentGuid.forEach((index) => {
-        branchChild = branchChild.children[index];
-      });
+    // if (parentGuid.length > 0) {
+    //   let branchChild = challengeRenderStructure;
+    //   parentGuid.forEach((index) => {
+    //     branchChild = branchChild.children[index];
+    //   });
 
-      branchChild.children.push({
-        type: cardSchema.cardType,
-        guid: cardSchema.cardGuid,
-        isRemovable: true,
-        children: []
-      });
-    } else {
-      challengeRenderStructure.children.push({
-        type: cardSchema.cardType,
-        guid: cardSchema.cardGuid,
-        isRemovable: true,
-        children: []
-      });
-    }
+    //   branchChild.children.push({
+    //     type: cardSchema.cardType,
+    //     guid: cardSchema.cardGuid,
+    //     isRemovable: true,
+    //     children: []
+    //   });
+    // } else {
+    //   challengeRenderStructure.children.push({
+    //     type: cardSchema.cardType,
+    //     guid: cardSchema.cardGuid,
+    //     isRemovable: true,
+    //     children: []
+    //   });
+    // }
 
     dispatch({
       type: actionTypes.addChallengeCard,
-      challengeRenderStructure,
       variableList,
     });
   } catch (error) {
@@ -75,23 +75,26 @@ export function addChallengeCard(cardSchema, parentGuid = [], dispatch, getState
 }
 
 export function updateChallengeCard(cardGuid, prop, value, dispatch, getState) {
-  // try {
-  const { variableList } = getState().challenge;
+  try {
+    const {
+      variableList
+    } = getState().challenge;
 
-  const cardData = variableList.find(v => v.cardGuid === cardGuid);
+    const cardData = variableList.find(v => v.cardGuid === cardGuid);
 
-  cardData[prop] = value;
+    cardData[prop] = value;
 
-  console.log(cardGuid, prop, value, variableList);
-
-  dispatch({ type: actionTypes.updateChallengeCard, variableList });
-  // } catch (error) {
-  //   dispatch({
-  //     type: actionTypes.updateStatus,
-  //     error,
-  //     loading: false
-  //   });
-  // }
+    dispatch({
+      type: actionTypes.updateChallengeCard,
+      variableList
+    });
+  } catch (error) {
+    dispatch({
+      type: actionTypes.updateStatus,
+      error,
+      loading: false
+    });
+  }
 }
 
 // function arrFunc(cardGuid, cardArray) {
@@ -99,53 +102,45 @@ export function updateChallengeCard(cardGuid, prop, value, dispatch, getState) {
 //     const array = v.children.filter(val => val.cardGuid === cardGuid);
 
 //     if (array.length > 0) {
-      
+
 //     }
 
 //     arrFunc(cardGuid, v.children);
 //   });
 // }
 
-export function removeChallengeCard(cardGuid, parentGuid = [], dispatch, getState) {
-  // try {
-  const { variableList } = getState().challenge;
-  const { challengeRenderStructure } = getState().challenge;
+export function removeChallengeCard(cardGuid, dispatch, getState) {
+  try {
+    const {
+      variableList
+    } = getState().challenge;
 
-  let branchChild = challengeRenderStructure;
-  parentGuid.forEach((index) => {
-    branchChild = branchChild.children[index];
-  });
+    const newVariableList = variableList.reduce((t, c) => {
+      if (c.cardGuid !== cardGuid && c.parentGuid !== cardGuid) {
+        t.push(c);
+      }
+      return t;
+    }, []);
 
-  const index = branchChild.children.findIndex(v => v.cardGuid === cardGuid);
-
-  // const arrFunc = (cardGuid) => {
-
-  // }
-
-  // branchChild.splice(index, 1);
-
-  // const cardData = variableList.find(v => v.cardGuid === cardGuid);
-
-  // cardData[prop] = value;
-
-  // console.log(cardGuid, prop, value, variableList);
-
-  dispatch({ type: actionTypes.updateChallengeCard, variableList });
-  // } catch (error) {
-  //   dispatch({
-  //     type: actionTypes.updateStatus,
-  //     error,
-  //     loading: false
-  //   });
-  // }
+    dispatch({
+      type: actionTypes.updateChallengeCard,
+      variableList: newVariableList
+    });
+  } catch (error) {
+    dispatch({
+      type: actionTypes.updateStatus,
+      error,
+      loading: false
+    });
+  }
 }
 
 export const actionCreators = {
   initChallengeList: () => async (dispatch, getState) => {
     await initChallengeList(dispatch, getState);
   },
-  addChallengeCard: (cardSchema, parentGuid) => (dispatch, getState) => {
-    addChallengeCard(cardSchema, parentGuid, dispatch, getState);
+  addChallengeCard: cardSchema => (dispatch, getState) => {
+    addChallengeCard(cardSchema, dispatch, getState);
   },
   updateChallengeCard: (cardGuid, prop, value) => (dispatch, getState) => {
     updateChallengeCard(cardGuid, prop, value, dispatch, getState);
@@ -153,9 +148,10 @@ export const actionCreators = {
   removeChallengeCard: cardGuid => (dispatch, getState) => {
     removeChallengeCard(cardGuid, dispatch, getState);
   },
-  showChallengeCardModal: () => (dispatch) => {
+  showChallengeCardModal: parentGuid => (dispatch) => {
     dispatch({
-      type: actionTypes.showChallengeModal
+      type: actionTypes.showChallengeModal,
+      parentGuid
     });
   },
   closeChallengeCardModal: () => (dispatch) => {

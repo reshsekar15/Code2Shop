@@ -5,6 +5,7 @@ const initialState = {
   listOfChallenges: [],
   selectedChallenge: null,
   showCardSelectMenu: false,
+  parentGuid: null,
   challengeRenderStructure: {
     type: 'root',
     guid: guid(),
@@ -43,6 +44,7 @@ export default function challengeReducer(state = initialState, action) {
         challengeRenderStructure: action.challengeRenderStructure,
         challengeCompileStructure: action.challengeCompileStructure,
         variableList: action.variableList,
+        parentGuid: null,
         showCardSelectMenu: false
       };
     case actionTypes.updateChallengeCard:
@@ -50,14 +52,21 @@ export default function challengeReducer(state = initialState, action) {
         ...state,
         variableList: action.variableList
       };
+    case actionTypes.removeChallengeCard:
+      return {
+        ...state,
+        variableList: action.variableList
+      };
     case actionTypes.showChallengeModal:
       return {
         ...state,
+        parentGuid: action.parentGuid,
         showCardSelectMenu: true
       };
     case actionTypes.closeChallengeModal:
       return {
         ...state,
+        parentGuid: null,
         showCardSelectMenu: false
       };
     case actionTypes.resetInitialState:

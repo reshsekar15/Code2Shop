@@ -9,31 +9,33 @@ import CardWrapper from './CardWrapper';
 import LoopCheck from './LoopCheck';
 
 class LoopCard extends Component {
-  state = {
-    selectedCards: [{
-      cardType: 'variable',
-      variableName: 'x',
-      variableValue: '0'
-    }, {
-      cardType: 'variable',
-      variableName: 'y',
-      variableValue: '100'
-    }]
-  }
-
   toggleMenu() {
     this.setState({ showMenu: !this.state.showMenu });
   }
 
   render() {
-    const { cardChildren, showChallengeCardModal } = this.props;
+    const {
+      cardChildren,
+      showChallengeCardModal,
+      removeChallengeCard,
+      cardGuid
+    } = this.props;
     return (
       <Grid.Column width={16}>
         <Card fluid color="green">
           <Card.Content>
             <Card.Header>
               Loop
-              <Icon name="trash alternate" color="red" style={{ float: 'right' }} />
+              <Button
+                icon
+                onClick={() => removeChallengeCard(cardGuid)}
+                basic
+                floated="right"
+                color="red"
+                size="small"
+              >
+                <Icon name="trash alternate" color="red" />
+              </Button>
             </Card.Header>
           </Card.Content>
           <Card.Content>
@@ -43,18 +45,22 @@ class LoopCard extends Component {
                   <LoopCheck conditionType="While" />
                 </Grid.Column>
               </Grid.Row>
+            </Grid>
+          </Card.Content>
+          <Card.Content extra>
+            <Grid>
               {cardChildren.map(card => (
-                <Grid.Row centered>
-                  <Grid.Column width={12}>
+                <Grid.Row>
+                  <Grid.Column width={16}>
                     <CardWrapper {...card} />
                   </Grid.Column>
                 </Grid.Row>
               ))}
-              <Grid.Row centered>
-                <Grid.Column width={12}>
+              <Grid.Row>
+                <Grid.Column width={16}>
                   <Button
                     fluid
-                    onClick={() => showChallengeCardModal()}
+                    onClick={() => showChallengeCardModal(cardGuid)}
                     size="big"
                   >
                     <Icon name="add" />

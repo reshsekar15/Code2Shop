@@ -5,13 +5,22 @@ import CardWrapper from './CardWrapper';
 import ConditionCheck from './ConditionalCheck';
 
 // eslint-disable-next-line
-const ConditionalCard = ({ cardGuid, variableOptions, conditionalObject, handleUpdate, handleAddItem }) => (
+const ConditionalCard = ({ cardGuid, variableOptions, conditionalObject, handleUpdate, removeChallengeCard, handleAddItem }) => (
   <Grid.Column mobile={16} computer={16}>
     <Card fluid color="red">
       <Card.Content>
         <Card.Header>
           Conditional
-          <Icon name="trash alternate" color="red" style={{ float: 'right' }} />
+          <Button
+            icon
+            onClick={() => removeChallengeCard(cardGuid)}
+            basic
+            floated="right"
+            color="red"
+            size="small"
+          >
+            <Icon name="trash alternate" color="red" />
+          </Button>
         </Card.Header>
       </Card.Content>
       <Card.Content>

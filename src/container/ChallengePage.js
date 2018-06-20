@@ -8,18 +8,18 @@ import ChallengeStep from '../components/ChallengePage/ChallengeStep';
 import ChallengeCardModal from '../components/ChallengePage/ChallengeCardModal';
 
 const ChallengePage = (props) => {
-  const { showChallengeCardModal, challengeRenderStructure } = props;
+  const { showChallengeCardModal, variableList } = props;
 
+  const rootComponents = variableList.filter(v => v.parentGuid === null);
   return (
     <Container>
       <Grid stackable>
-        {challengeRenderStructure.children.map((step, index) => (
+        {rootComponents.map((step, index) => (
           <ChallengeStep
-            key={step.guid}
-            cardType={step.type}
-            guid={step.guid}
+            key={step.cardGuid}
+            cardType={step.cardType}
+            cardGuid={step.cardGuid}
             index={index}
-            cardChildren={step.children}
           />
         ))}
         <Grid.Row>
@@ -27,7 +27,7 @@ const ChallengePage = (props) => {
             <Button
               fluid
               size="massive"
-              onClick={() => showChallengeCardModal()}
+              onClick={() => showChallengeCardModal(null)}
             >
               <Icon name="add" />
               Add Component

@@ -3,6 +3,8 @@ import { guid } from '../../../../helpers';
 export default cardData => ({
   cardType: 'conditional',
   cardGuid: guid(),
+  parentGuid: null,
+  isRemovable: true,
   conditionals: [{
     type: 'If',
     variableCheck: cardData ? cardData.variableCheck : '',
