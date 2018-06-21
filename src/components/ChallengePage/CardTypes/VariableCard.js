@@ -19,7 +19,6 @@ class VariableCard extends Component {
         variableValue,
         isRemovable,
       },
-      updateChallengeCard,
       removeChallengeCard
     } = this.props;
     console.log(this.props);

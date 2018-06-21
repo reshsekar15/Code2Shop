@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Card, Grid, Dropdown, Header, Icon, Button } from 'semantic-ui-react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { actionCreators } from '../../../store/actions/challenge_Actions';
+// import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
+// import { actionCreators } from '../../../store/actions/challenge_Actions';
 
 import { operatorOptions } from './Helpers';
 
@@ -40,11 +40,13 @@ class ModifierCard extends Component {
 
   render() {
     const {
-      cardGuid,
-      settingVariable,
-      modifierName,
-      modifierOperator,
-      modifierValue,
+      cardData: {
+        cardGuid,
+        settingVariable,
+        modifierName,
+        modifierOperator,
+        modifierValue,
+      },
       updateChallengeCard,
       removeChallengeCard
     } = this.props;

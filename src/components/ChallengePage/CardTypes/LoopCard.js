@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Card, Button, Grid, Icon } from 'semantic-ui-react';
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { actionCreators } from '../../../store/actions/challenge_Actions';
+// import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
+// import { actionCreators } from '../../../store/actions/challenge_Actions';
 
 import CardWrapper from './CardWrapper';
 import LoopCheck from './LoopCheck';
@@ -18,7 +18,7 @@ class LoopCard extends Component {
       cardChildren,
       showChallengeCardModal,
       removeChallengeCard,
-      cardGuid
+      cardData: { cardGuid }
     } = this.props;
     return (
       <Grid.Column width={16}>

@@ -19,7 +19,6 @@ const initialState = {
 };
 
 export default function challengeReducer(state = initialState, action) {
-
   switch (action.type) {
     case actionTypes.initChallengeList:
       return {
