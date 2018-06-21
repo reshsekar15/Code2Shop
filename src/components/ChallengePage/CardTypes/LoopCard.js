@@ -77,7 +77,4 @@ class LoopCard extends Component {
   }
 }
 
-export default connect(
-  null,
-  dispatch => bindActionCreators({ ...actionCreators }, dispatch)
-)(LoopCard);
+export default LoopCard;

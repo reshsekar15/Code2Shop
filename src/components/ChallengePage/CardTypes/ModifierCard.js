@@ -139,7 +139,4 @@ class ModifierCard extends Component {
   }
 }
 
-export default connect(
-  state => state.challenge,
-  dispatch => bindActionCreators({ ...actionCreators }, dispatch)
-)(ModifierCard);
+export default ModifierCard;

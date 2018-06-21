@@ -17,8 +17,8 @@ const ChallengePage = (props) => {
         {rootComponents.map((step, index) => (
           <ChallengeStep
             key={step.cardGuid}
-            cardType={step.cardType}
-            cardGuid={step.cardGuid}
+            variableList={variableList}
+            cardData={step}
             index={index}
           />
         ))}
@@ -48,5 +48,5 @@ const ChallengePage = (props) => {
 
 export default connect(
   state => state.challenge,
-  dispatch => bindActionCreators({ ...actionCreators }, dispatch)
+  dispatch => bindActionCreators({ showChallengeCardModal: actionCreators.showChallengeCardModal }, dispatch)
 )(ChallengePage);

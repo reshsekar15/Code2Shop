@@ -6,8 +6,10 @@ import CardWrapper from './CardTypes/CardWrapper';
 const ChallengeStep = (props) => {
   const {
     index,
+    cardData,
+    variableList,
   } = props;
-
+  console.log(props);
   return (
     <Grid.Row>
       <Grid.Column width={2}>
@@ -15,7 +17,8 @@ const ChallengeStep = (props) => {
       </Grid.Column>
       <Grid.Column width={14}>
         <CardWrapper
-          {...props}
+          cardData={cardData}
+          variableList={variableList}
         />
       </Grid.Column>
     </Grid.Row>
