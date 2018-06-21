@@ -1,12 +1,11 @@
 import { guid } from '../../../../helpers';
 
-export default cardData => ({
+export default parentGuid => ({
   cardType: 'loop',
   cardGuid: guid(),
-  parentGuid: null,
+  parentGuid,
   isRemovable: true,
-  variableCheck: cardData ? cardData.variableCheck : '',
-  truthOperator: cardData ? cardData.truthOperator : '',
-  truthValue: cardData ? cardData.truthValue : '',
-  actions: []
+  variableCheck: '',
+  truthOperator: '',
+  truthValue: '',
 });

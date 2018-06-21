@@ -35,6 +35,8 @@ const CardWrapper = (props) => {
 };
 
 export default connect(
-  null,
+  state => ({
+    variableList: state.challenge.variableList
+  }),
   dispatch => bindActionCreators({ ...actionCreators }, dispatch)
 )(CardWrapper);
