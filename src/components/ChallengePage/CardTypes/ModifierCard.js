@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Grid, Dropdown, Header, Icon, Button } from 'semantic-ui-react';
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import { actionCreators } from '../../../store/actions/challenge_Actions';
+import { connect } from 'react-redux';
+import actionTypes from '../../../store/actions/actionTypes';
 
 import { operatorOptions } from './Helpers';
 
@@ -16,6 +15,7 @@ class ModifierCard extends Component {
 
   componentDidMount() {
     const {
+      cardData,
       variableList
     } = this.props;
 
@@ -26,7 +26,15 @@ class ModifierCard extends Component {
         text: v.variableName
       }));
 
-      // eslint-disable-next-line
+    if (!availableList.find(v => v.value === cardData.modifierValue)) {
+      availableList.push({value: cardData.modifierValue, text: cardData.modifierValue });
+    }
+
+    if (!availableList.find(v => v.value === cardData.modifierName)) {
+      availableList.push({ value: cardData.modifierName, text: cardData.modifierName });
+    }
+
+    // eslint-disable-next-line
     this.setState({
       settingVarList: availableList,
       modifierNameList: availableList,
@@ -38,16 +46,28 @@ class ModifierCard extends Component {
     this.setState({ [prop]: [...this.state[prop], { value, text: value }] });
   }
 
+  updateCard(prop, value) {
+    const { cardData: { cardGuid }, variableList, dispatch } = this.props;
+
+    variableList.forEach((card) => {
+      if (card.cardGuid === cardGuid) {
+        card[prop] = value;
+      }
+    });
+
+    dispatch({ type: actionTypes.updateChallengeCard, variableList: [...variableList] });
+  }
+
   render() {
     const {
       cardData: {
         cardGuid,
+        isRemovable,
         settingVariable,
         modifierName,
         modifierOperator,
-        modifierValue,
+        modifierValue
       },
-      updateChallengeCard,
       removeChallengeCard
     } = this.props;
     const {
@@ -61,6 +81,7 @@ class ModifierCard extends Component {
           <Card.Content>
             <Card.Header>
               Modifier
+              {isRemovable && (
               <Button
                 icon
                 onClick={() => removeChallengeCard(cardGuid)}
@@ -70,7 +91,7 @@ class ModifierCard extends Component {
                 size="small"
               >
                 <Icon name="trash alternate" color="red" />
-              </Button>
+              </Button>)}
             </Card.Header>
           </Card.Content>
           <Card.Content>
@@ -86,7 +107,7 @@ class ModifierCard extends Component {
                     placeholder="Name..."
                     options={settingVarList}
                     value={settingVariable}
-                    onChange={(e, { value }) => updateChallengeCard(cardGuid, 'settingVariable', value)}
+                    onChange={(e, { value }) => this.updateCard('settingVariable', value)}
                     onAddItem={(e, { value }) => this.onAddItem('settingVarList', value)}
                   />
                 </Grid.Column>
@@ -103,7 +124,7 @@ class ModifierCard extends Component {
                     placeholder="Name..."
                     options={modifierNameList}
                     value={modifierName}
-                    onChange={(e, { value }) => updateChallengeCard(cardGuid, 'modifierName', value)}
+                    onChange={(e, { value }) => this.updateCard('modifierName', value)}
                     onAddItem={(e, { value }) => this.onAddItem('modifierNameList', value)}
                   />
                 </Grid.Column>
@@ -116,7 +137,7 @@ class ModifierCard extends Component {
                     className="card-inputs"
                     placeholder="Operation..."
                     value={modifierOperator}
-                    onChange={(e, { value }) => updateChallengeCard(cardGuid, 'modifierOperator', value)}
+                    onChange={(e, { value }) => this.updateCard('modifierOperator', value)}
                   />
                 </Grid.Column>
                 <Grid.Column>
@@ -129,7 +150,7 @@ class ModifierCard extends Component {
                     placeholder="Value..."
                     options={modifierValueList}
                     value={modifierValue}
-                    onChange={(e, { value }) => updateChallengeCard(cardGuid, 'modifierValue', value)}
+                    onChange={(e, { value }) => this.updateCard('modifierValue', value)}
                     onAddItem={(e, { value }) => this.onAddItem('modifierValueList', value)}
                   />
                 </Grid.Column>
@@ -141,4 +162,4 @@ class ModifierCard extends Component {
   }
 }
 
-export default ModifierCard;
+export default connect()(ModifierCard);

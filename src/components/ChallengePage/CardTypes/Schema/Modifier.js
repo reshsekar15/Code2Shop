@@ -1,12 +1,12 @@
 import { guid } from '../../../../helpers';
 
-export default cardData => ({
+export default parentGuid => ({
   cardType: 'modifier',
   cardGuid: guid(),
-  parentGuid: null,
+  parentGuid,
   isRemovable: true,
-  settingVariable: cardData ? cardData.settingVariable : '',
-  modifierName: cardData ? cardData.modifierName : '',
-  modifierOperator: cardData ? cardData.modifierOperator : 'add',
-  modifierValue: cardData ? cardData.modifierValue : 1
+  settingVariable: '',
+  modifierName: '',
+  modifierOperator: '',
+  modifierValue: ''
 });

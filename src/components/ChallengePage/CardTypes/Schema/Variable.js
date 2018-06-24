@@ -1,10 +1,10 @@
 import { guid } from '../../../../helpers';
 
-export default cardData => ({
+export default parentGuid => ({
   cardType: 'variable',
   cardGuid: guid(),
-  parentGuid: null,
+  parentGuid,
   isRemovable: true,
-  variableName: cardData ? cardData.variableName : '',
-  variableValue: cardData ? cardData.variableValue : ''
+  variableName: '',
+  variableValue: ''
 });

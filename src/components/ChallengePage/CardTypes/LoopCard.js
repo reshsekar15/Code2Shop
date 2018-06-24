@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Button, Grid, Icon } from 'semantic-ui-react';
-
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import { actionCreators } from '../../../store/actions/challenge_Actions';
+import { connect } from 'react-redux';
+import actionTypes from '../../../store/actions/actionTypes';
 
 import CardWrapper from './CardWrapper';
 import LoopCheck from './LoopCheck';
@@ -13,12 +11,27 @@ class LoopCard extends Component {
     this.setState({ showMenu: !this.state.showMenu });
   }
 
+  updateCard(prop, value) {
+    const { cardData: { cardGuid }, variableList, dispatch } = this.props;
+
+    variableList.forEach((card) => {
+      if (card.cardGuid === cardGuid) {
+        card[prop] = value;
+      }
+    });
+
+    dispatch({ type: actionTypes.updateChallengeCard, variableList: [...variableList] });
+  }
+
   render() {
     const {
       cardChildren,
       showChallengeCardModal,
       removeChallengeCard,
-      cardData: { cardGuid }
+      cardData: {
+        cardGuid,
+        isRemovable,
+      }
     } = this.props;
     return (
       <Grid.Column width={16}>
@@ -26,6 +39,7 @@ class LoopCard extends Component {
           <Card.Content>
             <Card.Header>
               Loop
+              {isRemovable && (
               <Button
                 icon
                 onClick={() => removeChallengeCard(cardGuid)}
@@ -35,7 +49,7 @@ class LoopCard extends Component {
                 size="small"
               >
                 <Icon name="trash alternate" color="red" />
-              </Button>
+              </Button>)}
             </Card.Header>
           </Card.Content>
           <Card.Content>
@@ -52,7 +66,7 @@ class LoopCard extends Component {
               {cardChildren.map(card => (
                 <Grid.Row>
                   <Grid.Column width={16}>
-                    <CardWrapper {...card} />
+                    <CardWrapper cardData={card} />
                   </Grid.Column>
                 </Grid.Row>
               ))}
@@ -77,4 +91,4 @@ class LoopCard extends Component {
   }
 }
 
-export default LoopCard;
+export default connect()(LoopCard);

@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Card, Grid, Input, Header, Icon, Button } from 'semantic-ui-react';
+import actionTypes from '../../../store/actions/actionTypes';
 
 // eslint-disable-next-line
 class VariableCard extends Component {
   updateCard(prop, value) {
-    const { cardData: { cardGuid }, updateChallengeCard } = this.props;
+    const { cardData: { cardGuid }, variableList, dispatch } = this.props;
 
-    console.log(cardGuid, updateChallengeCard);
+    variableList.forEach((card) => {
+      if (card.cardGuid === cardGuid) {
+        card[prop] = value;
+      }
+    });
 
-    updateChallengeCard(cardGuid, prop, value);
+    dispatch({ type: actionTypes.updateChallengeCard, variableList: [...variableList] });
   }
 
   render() {
@@ -63,7 +69,7 @@ class VariableCard extends Component {
                     className="card-inputs"
                     placeholder="Value..."
                     value={variableValue}
-                    onChange={(e, { value }) => this.updateCard('variableName', value)}
+                    onChange={(e, { value }) => this.updateCard('variableValue', value)}
                   />
                 </Grid.Column>
               </Grid.Row>
@@ -74,6 +80,6 @@ class VariableCard extends Component {
   }
 }
 
-export default VariableCard;
+export default connect()(VariableCard);
 
 // export default VariableCard;

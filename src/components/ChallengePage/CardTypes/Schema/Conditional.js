@@ -1,18 +1,20 @@
 import { guid } from '../../../../helpers';
 
-export default cardData => ({
+export default parentGuid => ({
   cardType: 'conditional',
   cardGuid: guid(),
-  parentGuid: null,
+  parentGuid,
   isRemovable: true,
   conditionals: [{
     type: 'If',
-    variableCheck: cardData ? cardData.variableCheck : '',
-    truthOperator: cardData ? cardData.truthOperator : '',
-    truthValue: cardData ? cardData.truthValue : '',
+    conditionalGuid: guid(),
+    variableCheck: '',
+    truthOperator: '',
+    truthValue: '',
     actions: []
   }, {
     type: 'Else',
+    conditionalGuid: guid(),
     variableCheck: null,
     truthOperator: null,
     truthValue: null,
