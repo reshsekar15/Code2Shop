@@ -201,6 +201,10 @@ h1.fancy-font {
   cursor: pointer;
 }
 
+.clickable:hover {
+  background-color: rgba(240, 240, 240, 0.6);
+}
+
 .code-container {
   position: relative;
   padding: 10px;

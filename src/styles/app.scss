@@ -161,7 +161,6 @@ h1.fancy-font{
   }
 }
 
-
 .challenges-content{
   display: flex;
   align-items: center;
@@ -184,7 +183,6 @@ h1.fancy-font{
     }
   }
 }
-
 
 .c2s-logo{
   font-size: 1.2rem !important;
@@ -224,6 +222,10 @@ h1.fancy-font{
 
 .clickable{
   cursor: pointer;
+  
+  &:hover {
+    background-color: rgba(240,240,240,.6);
+  }
 }
 
 .code-container{

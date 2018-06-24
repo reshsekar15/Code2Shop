@@ -4,6 +4,7 @@ import Logo from '../logo/Code2Shop-Logo-Contrast.png';
 import SignOutButton from './UserManagement/SignOut';
 
 const TopNav = ({ url, userInfo }) => {
+  console.log(userInfo);
   if (url === '/') {
     return (
       <Menu

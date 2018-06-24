@@ -37,8 +37,10 @@ class RewardsPage extends Component {
             </Statistic>
           </div>
           <Card.Group>
-            {brands.map(brand => (
+            {brands.map((brand, index) => (
               <RedeemCard
+                // eslint-disable-next-line
+                key={`${brand}-${index}`}
                 rewardInfo={brand}
                 redeemed={redeemed}
                 handleRedeemPoints={this.handleRedeemPoints}

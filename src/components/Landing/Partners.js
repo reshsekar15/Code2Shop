@@ -7,7 +7,7 @@ const Partners = () => (
     <Header as="h1" textAlign="center" className="fancy-font">Products & Services</Header>
     <Grid padded stackable columns="equal">
       {brands.map(img => (
-        <Grid.Column verticalAlign="middle">
+        <Grid.Column key={img.id} verticalAlign="middle">
           <Image size="medium" centered src={img.image} />
         </Grid.Column>
       ))}

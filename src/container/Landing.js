@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Grid, Segment } from 'semantic-ui-react';
+import { Grid, Segment } from 'semantic-ui-react';
 
 import computer from '../images/LandingPage/computer_png.png';
 import progress from '../images/LandingPage/progress_png.png';

@@ -1,20 +1,20 @@
 import sentry from '../../helpers/sentry';
-// import { firebase, db } from '../../firebase';
-// import actionTypes from '../actions/actionTypes';
+import { firebase, db } from '../../firebase';
+import actionTypes from '../actions/actionTypes';
 import { checkDeviceInfo } from '../actions/app_Actions';
 
 export const getUserInfo = store => next => (action) => {
   if (action.type === 'persist/REHYDRATE') {
     checkDeviceInfo(store.dispatch);
-    // firebase.auth.onAuthStateChanged((authUser) => {
-    //   if (authUser) {
-    //     db.users.onceGetCurrentUser(authUser.uid).then((user) => {
-    //       store.dispatch({ type: actionTypes.initApplication, userInfo: user.val() });
-    //     });
-    //   } else {
-    //     store.dispatch({ type: actionTypes.initApplication, userInfo: null });
-    //   }
-    // });
+    firebase.auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        db.users.onceGetCurrentUser(authUser.uid).then((user) => {
+          store.dispatch({ type: actionTypes.initApplication, userInfo: user.val() });
+        });
+      } else {
+        store.dispatch({ type: actionTypes.initApplication, userInfo: null });
+      }
+    });
   }
   return next(action);
 };

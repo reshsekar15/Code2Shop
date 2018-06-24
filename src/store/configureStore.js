@@ -33,7 +33,7 @@ export default function configureStore(history, initialState) {
   const config = {
     key: 'root',
     storage,
-    blacklist: ['status', 'app'],
+    blacklist: ['status'],
   };
 
   const rootReducer = persistCombineReducers(config, reducers);

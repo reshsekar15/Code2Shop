@@ -3,6 +3,14 @@ import { Segment, Label, Icon } from 'semantic-ui-react';
 
 class ChallangeListItem extends Component {
   state = {}
+
+  navigateToChallenge(link) {
+    const { history } = this.props;
+    console.log(this.props);
+
+    history.push(link);
+  }
+
   render() {
     const {
       challengesLink,
@@ -13,9 +21,9 @@ class ChallangeListItem extends Component {
     } = this.props;
 
     return (
-      <Segment>
-        <a href={challengesLink} className="challenges-content">
-          <Label as="a" color={levelColor} ribbon>
+      <Segment className="clickable" onClick={() => this.navigateToChallenge(challengesLink)}>
+        <span className="challenges-content">
+          <Label color={levelColor} ribbon>
             {levelName}
           </Label>
           <span className="challenges-name">{challangeText}</span>
@@ -27,7 +35,7 @@ class ChallangeListItem extends Component {
                 Complete!
               </span>
             </div>)}
-        </a>
+        </span>
       </Segment>
 
     );

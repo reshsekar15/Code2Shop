@@ -13,34 +13,34 @@ class ModifierCard extends Component {
     modifierValueList: [],
   }
 
-  componentDidMount() {
-    const {
-      cardData,
-      variableList
-    } = this.props;
+  // componentDidMount() {
+  //   const {
+  //     cardData,
+  //     variableList
+  //   } = this.props;
 
-    const availableList = variableList
-      .filter(v => v.cardType === 'variable')
-      .map(v => ({
-        value: v.cardGuid,
-        text: v.variableName
-      }));
+  //   const availableList = variableList
+  //     .filter(v => v.cardType === 'variable')
+  //     .map(v => ({
+  //       value: v.cardGuid,
+  //       text: v.variableName
+  //     }));
 
-    if (!availableList.find(v => v.value === cardData.modifierValue)) {
-      availableList.push({value: cardData.modifierValue, text: cardData.modifierValue });
-    }
+  //   if (!availableList.find(v => v.value === cardData.modifierValue)) {
+  //     availableList.push({ value: cardData.modifierValue, text: cardData.modifierValue });
+  //   }
 
-    if (!availableList.find(v => v.value === cardData.modifierName)) {
-      availableList.push({ value: cardData.modifierName, text: cardData.modifierName });
-    }
+  //   if (!availableList.find(v => v.value === cardData.modifierName)) {
+  //     availableList.push({ value: cardData.modifierName, text: cardData.modifierName });
+  //   }
 
-    // eslint-disable-next-line
-    this.setState({
-      settingVarList: availableList,
-      modifierNameList: availableList,
-      modifierValueList: availableList
-    });
-  }
+  //   // eslint-disable-next-line
+  //   this.setState({
+  //     settingVarList: availableList,
+  //     modifierNameList: availableList,
+  //     modifierValueList: availableList
+  //   });
+  // }
 
   onAddItem(prop, value) {
     this.setState({ [prop]: [...this.state[prop], { value, text: value }] });
@@ -51,6 +51,7 @@ class ModifierCard extends Component {
 
     variableList.forEach((card) => {
       if (card.cardGuid === cardGuid) {
+        // eslint-disable-next-line
         card[prop] = value;
       }
     });
@@ -70,11 +71,29 @@ class ModifierCard extends Component {
       },
       removeChallengeCard
     } = this.props;
+
     const {
-      settingVarList,
-      modifierNameList,
-      modifierValueList
-    } = this.state;
+      cardData,
+      variableList
+    } = this.props;
+
+    const availableList = variableList
+      .filter(v => v.cardType === 'variable')
+      .map(v => ({
+        value: v.cardGuid,
+        text: v.variableName
+      }));
+
+    if (!availableList.find(v => v.value === cardData.modifierValue)) {
+      availableList.push({ value: cardData.modifierValue, text: cardData.modifierValue });
+    }
+
+    if (!availableList.find(v => v.value === cardData.modifierName)) {
+      availableList.push({ value: cardData.modifierName, text: cardData.modifierName });
+    }
+
+    const settingVarList = variableList.map(v => ({ value: v.variableName, text: v.variableName }));
+
     return (
       <Grid.Column mobile={16} computer={16}>
         <Card fluid color="yellow">
@@ -122,7 +141,7 @@ class ModifierCard extends Component {
                     allowAdditions
                     className="card-inputs"
                     placeholder="Name..."
-                    options={modifierNameList}
+                    options={availableList}
                     value={modifierName}
                     onChange={(e, { value }) => this.updateCard('modifierName', value)}
                     onAddItem={(e, { value }) => this.onAddItem('modifierNameList', value)}
@@ -148,7 +167,7 @@ class ModifierCard extends Component {
                     allowAdditions
                     className="card-inputs"
                     placeholder="Value..."
-                    options={modifierValueList}
+                    options={availableList}
                     value={modifierValue}
                     onChange={(e, { value }) => this.updateCard('modifierValue', value)}
                     onAddItem={(e, { value }) => this.onAddItem('modifierValueList', value)}

@@ -10,6 +10,7 @@ class VariableCard extends Component {
 
     variableList.forEach((card) => {
       if (card.cardGuid === cardGuid) {
+        // eslint-disable-next-line
         card[prop] = value;
       }
     });

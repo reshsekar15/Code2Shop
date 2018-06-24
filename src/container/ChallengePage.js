@@ -1,11 +1,13 @@
 import React from 'react';
 import { Grid, Container, Button, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 
 import { actionCreators } from '../store/actions/challenge_Actions';
 import ChallengeStep from '../components/ChallengePage/ChallengeStep';
 import ChallengeCardModal from '../components/ChallengePage/ChallengeCardModal';
+import withAuthorization from '../AAA/withAuthorization';
 
 const ChallengePage = (props) => {
   const { showChallengeCardModal, variableList } = props;
@@ -46,7 +48,15 @@ const ChallengePage = (props) => {
   );
 };
 
-export default connect(
-  state => state.challenge,
-  dispatch => bindActionCreators({ showChallengeCardModal: actionCreators.showChallengeCardModal }, dispatch)
+const mapStateToProps = state => state.challenge;
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  showChallengeCardModal: actionCreators.showChallengeCardModal
+}, dispatch);
+
+const authCondition = authUser => !!authUser;
+
+export default compose(
+  withAuthorization(authCondition),
+  connect(mapStateToProps, mapDispatchToProps)
 )(ChallengePage);

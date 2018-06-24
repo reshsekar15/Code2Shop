@@ -4,7 +4,7 @@ import TopNav from './TopNav';
 
 const Layout = ({ userInfo, children }) => (
   <div className="App">
-    <TopNav userProfile={userInfo} />
+    <TopNav userInfo={userInfo} />
     <div className="main-content">
       {children}
     </div>
