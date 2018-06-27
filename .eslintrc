@@ -4,6 +4,9 @@
   "ecmaFeatures": {
     "classes": true
   },
+  "globals": {
+    "window": true
+  },
   "rules": {
     "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],
     "global-require": "off",
