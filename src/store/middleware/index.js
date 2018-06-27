@@ -8,6 +8,7 @@ export const getUserInfo = store => next => (action) => {
     checkDeviceInfo(store.dispatch);
     firebase.auth.onAuthStateChanged((authUser) => {
       if (authUser) {
+        console.log(authUser);
         db.users.onceGetCurrentUser(authUser.uid).then((user) => {
           store.dispatch({ type: actionTypes.initApplication, userInfo: user.val() });
         });
