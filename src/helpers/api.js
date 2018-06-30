@@ -38,20 +38,20 @@ const _get = (endPoint, params, idToken) => axios({
   },
 });
 
-const _post = (endPoint, params, idToken) => axios({
+const _post = (endPoint, data, idToken) => axios({
   url: apiBaseUrl(endPoint),
   method: 'POST',
-  params,
+  data,
   headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
+    'Content-Type': 'application/json',
     'x-access-token': idToken
   }
 });
 
-const _put = (endPoint, params, idToken) => axios({
+const _put = (endPoint, data, idToken) => axios({
   url: apiBaseUrl(endPoint),
   method: 'PUT',
-  params,
+  data,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
     'x-access-token': idToken
@@ -82,12 +82,12 @@ export default {
       return data.data;
     });
   },
-  post: (endPoint, params, idToken) => {
+  post: (endPoint, body, idToken) => {
     const startTime = new Date().getTime();
-    return _post(endPoint, params, idToken).then((data) => {
+    return _post(endPoint, body, idToken).then((data) => {
       const breadCrumb = {
         endPoint,
-        params,
+        body,
         totalTime: (new Date().getTime() - startTime)
       };
 

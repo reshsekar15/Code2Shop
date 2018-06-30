@@ -51,7 +51,7 @@ const ChallengePage = (props) => {
 const mapStateToProps = state => state.challenge;
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  showChallengeCardModal: actionCreators.showChallengeCardModal
+  ...actionCreators
 }, dispatch);
 
 const authCondition = authUser => !!authUser;

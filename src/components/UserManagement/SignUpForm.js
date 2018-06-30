@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import { Segment, Form, Message, Icon } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import { auth, db } from '../../firebase';
+import { actionCreators } from '../../store/actions/app_Actions';
+import statusActions from '../../store/actions/status_Actions';
+
+import { auth, firebase } from '../../firebase';
+
 
 const INITIAL_STATE = {
   username: '',
@@ -23,9 +30,11 @@ class SignUpForm extends Component {
     this.state = {
       ...INITIAL_STATE
     };
+
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onSubmit = (event) => {
+  async onSubmit(event) {
     const {
       username,
       email,
@@ -34,23 +43,32 @@ class SignUpForm extends Component {
 
     const {
       history,
+      createUser,
+      sendError,
     } = this.props;
 
-    auth.doCreateUserWithEmailAndPassword(email, passwordOne)
-      .then((authUser) => {
-        // Create a user in your own accessible Firebase Database too
-        db.users.doCreateUser(authUser.user.uid, username, email)
-          .then(() => {
-            this.setState(() => ({ ...INITIAL_STATE }));
-            history.push('/challenges');
-          })
-          .catch((error) => {
-            this.setState({ error });
-          });
-      })
-      .catch((error) => {
-        this.setState({ error });
+    try {
+      const authUser = await auth.doCreateUserWithEmailAndPassword(email, passwordOne);
+
+      const user = {
+        username,
+        emailaddress: email,
+        userguid: authUser.user.uid,
+        fk_usertype: 1,
+      };
+
+      await createUser(user);
+
+      firebase.auth.onAuthStateChanged(async (newUser) => {
+        await newUser.sendEmailVerification();
+        this.setState({ ...INITIAL_STATE });
+        history.push('/challenges');
       });
+    } catch (error) {
+      this.setState({ error }, () => {
+        sendError(error, null);
+      });
+    }
 
     event.preventDefault();
   }
@@ -150,4 +168,10 @@ class SignUpForm extends Component {
   }
 }
 
-export default withRouter(SignUpForm);
+export default compose(
+  withRouter,
+  connect(
+    null,
+    dispatch => bindActionCreators({ ...actionCreators, ...statusActions }, dispatch)
+  )
+)(SignUpForm);

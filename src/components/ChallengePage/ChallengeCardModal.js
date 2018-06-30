@@ -70,7 +70,7 @@ class ChallengeCardModal extends Component {
         </Modal.Content>
       </Modal>
     );
-  };
+  }
 }
 
 export default connect()(ChallengeCardModal);

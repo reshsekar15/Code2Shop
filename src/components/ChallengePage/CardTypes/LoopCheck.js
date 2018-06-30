@@ -6,34 +6,34 @@ import { truthOperators } from './Helpers';
 const ConditionCheck = props => (
   <Grid>
     <Grid.Row columns="equal">
-      <Grid.Column width={2}>
+      <Grid.Column mobile={16} tablet={2} computer={2} widescreen={2}>
         <Header as="h1">{props.conditionType}</Header>
       </Grid.Column>
-      <Grid.Column>
+      <Grid.Column mobile={16} tablet={4} computer={4} widescreen={4}>
         <Dropdown
           fluid
           search
           selection
           className="card-inputs"
           placeholder="Name..."
-          options={props.variableOptions}
-          value={props.variableName}
-          onChange={(e, { value }) => props.handleUpdate(props.cardGuid, 'modifierName', value)}
+          options={props.variableCheckOptions}
+          value={props.variableCheck}
+          onChange={(e, { value }) => props.handleUpdate('variableCheck', value)}
         />
       </Grid.Column>
-      <Grid.Column>
+      <Grid.Column mobile={16} tablet={4} computer={4} widescreen={4}>
         <Dropdown
           fluid
           search
           selection
           className="card-inputs"
           placeholder="Name..."
-          options={truthOperators}
-          value={props.variableTruthOperator}
-          onChange={(e, { value }) => props.handleUpdate(props.cardGuid, 'modifierName', value)}
+          options={truthOperators()}
+          value={props.truthOperator}
+          onChange={(e, { value }) => props.handleUpdate('truthOperator', value)}
         />
       </Grid.Column>
-      <Grid.Column>
+      <Grid.Column widescreen={6} computer={6} tablet={6} mobile={16}>
         <Dropdown
           fluid
           search
@@ -41,14 +41,10 @@ const ConditionCheck = props => (
           allowAdditions
           className="card-inputs"
           placeholder="Value..."
-          options={props.variableOptions}
-          value={props.variableTruthValue}
-          onChange={(e, { value }) => props.handleUpdate(props.cardGuid, 'modifierName', value)}
-          onAddItem={(e, { value }) => props.handleAddItem(props.cardGuid, 'modifierOperator', value)}
+          options={props.truthValueOptions}
+          value={props.truthValue}
+          onChange={(e, { value }) => props.handleUpdate('truthValue', value)}
         />
-      </Grid.Column>
-      <Grid.Column width={2}>
-        <Header as="h1">Then</Header>
       </Grid.Column>
     </Grid.Row>
   </Grid>

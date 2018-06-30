@@ -1,4 +1,4 @@
-import { actionTypes } from './actionTypes';
+import actionTypes from './actionTypes';
 
 export default {
   sendError: (error, errorInfo) => (dispatch) => {

@@ -1,5 +1,5 @@
 import sentry from '../../helpers/sentry';
-import { firebase, db } from '../../firebase';
+import { firebase } from '../../firebase';
 import api from '../../helpers/api';
 import actionTypes from '../actions/actionTypes';
 import { checkDeviceInfo } from '../actions/app_Actions';
@@ -7,20 +7,26 @@ import { checkDeviceInfo } from '../actions/app_Actions';
 export const getUserInfo = store => next => (action) => {
   if (action.type === 'persist/REHYDRATE') {
     checkDeviceInfo(store.dispatch);
-    firebase.auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        authUser.getIdToken(true).then((idToken) => {
-          api.post('auth/fbauthenticate', null, idToken).then((data) => {
-            console.log(data);
-          });
-        });
-        // db.users.onceGetCurrentUser(authUser.uid).then((user) => {
-        //   store.dispatch({ type: actionTypes.initApplication, userInfo: user.val() });
-        // });
-      } else {
-        store.dispatch({ type: actionTypes.initApplication, userInfo: null });
-      }
-    });
+    try {
+      firebase.auth.onAuthStateChanged(async (authUser) => {
+        if (authUser) {
+          const idToken = await authUser.getIdToken(true);
+          const data = await api.post('auth/authenticate', null, idToken);
+
+          if (!data.success) {
+            throw data.message;
+          }
+
+          const { userInfo, token } = data.results;
+
+          store.dispatch({ type: actionTypes.initApplication, userInfo, token });
+        } else {
+          store.dispatch({ type: actionTypes.initApplication, userInfo: null, token: null });
+        }
+      });
+    } catch (error) {
+      store.dispatch({ type: actionTypes.updateStatus, error });
+    }
   }
   return next(action);
 };

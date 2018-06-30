@@ -77,8 +77,10 @@ class ModifierCard extends Component {
       variableList
     } = this.props;
 
-    const availableList = variableList
-      .filter(v => v.cardType === 'variable')
+    const varList = variableList
+      .filter(v => v.cardType === 'variable');
+
+    const availableList = varList
       .map(v => ({
         value: v.cardGuid,
         text: v.variableName
@@ -92,7 +94,7 @@ class ModifierCard extends Component {
       availableList.push({ value: cardData.modifierName, text: cardData.modifierName });
     }
 
-    const settingVarList = variableList.map(v => ({ value: v.variableName, text: v.variableName }));
+    const settingVarList = varList.map(v => ({ value: v.variableName, text: v.variableName }));
 
     return (
       <Grid.Column mobile={16} computer={16}>
@@ -114,9 +116,9 @@ class ModifierCard extends Component {
             </Card.Header>
           </Card.Content>
           <Card.Content>
-            <Grid stackable>
+            <Grid>
               <Grid.Row columns="equal">
-                <Grid.Column>
+                <Grid.Column mobile={16} tablet={4} computer={4} widescreen={4}>
                   <Dropdown
                     fluid
                     search
@@ -127,13 +129,19 @@ class ModifierCard extends Component {
                     options={settingVarList}
                     value={settingVariable}
                     onChange={(e, { value }) => this.updateCard('settingVariable', value)}
-                    onAddItem={(e, { value }) => this.onAddItem('settingVarList', value)}
                   />
                 </Grid.Column>
-                <Grid.Column textAlign="center" verticalAlign="bottom" width={1}>
+                <Grid.Column
+                  textAlign="center"
+                  verticalAlign="bottom"
+                  mobile={16}
+                  tablet={1}
+                  computer={1}
+                  widescreen={1}
+                >
                   <Header as="h1"> = </Header>
                 </Grid.Column>
-                <Grid.Column>
+                <Grid.Column mobile={16} tablet={4} computer={4} widescreen={4}>
                   <Dropdown
                     fluid
                     search
@@ -144,10 +152,16 @@ class ModifierCard extends Component {
                     options={availableList}
                     value={modifierName}
                     onChange={(e, { value }) => this.updateCard('modifierName', value)}
-                    onAddItem={(e, { value }) => this.onAddItem('modifierNameList', value)}
                   />
                 </Grid.Column>
-                <Grid.Column textAlign="center" verticalAlign="bottom">
+                <Grid.Column
+                  textAlign="center"
+                  verticalAlign="bottom"
+                  mobile={16}
+                  tablet={3}
+                  computer={3}
+                  widescreen={3}
+                >
                   <Dropdown
                     fluid
                     search
@@ -159,7 +173,7 @@ class ModifierCard extends Component {
                     onChange={(e, { value }) => this.updateCard('modifierOperator', value)}
                   />
                 </Grid.Column>
-                <Grid.Column>
+                <Grid.Column mobile={16} tablet={4} computer={4} widescreen={4}>
                   <Dropdown
                     fluid
                     search
@@ -170,7 +184,6 @@ class ModifierCard extends Component {
                     options={availableList}
                     value={modifierValue}
                     onChange={(e, { value }) => this.updateCard('modifierValue', value)}
-                    onAddItem={(e, { value }) => this.onAddItem('modifierValueList', value)}
                   />
                 </Grid.Column>
               </Grid.Row>

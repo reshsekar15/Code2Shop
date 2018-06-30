@@ -50,9 +50,9 @@ class VariableCard extends Component {
             </Card.Header>
           </Card.Content>
           <Card.Content>
-            <Grid stackable>
+            <Grid>
               <Grid.Row columns={3}>
-                <Grid.Column width={7}>
+                <Grid.Column mobile={16} tablet={7} computer={7} widescreen={7}>
                   <Input
                     fluid
                     className="card-inputs"
@@ -61,10 +61,10 @@ class VariableCard extends Component {
                     onChange={(e, { value }) => this.updateCard('variableName', value)}
                   />
                 </Grid.Column>
-                <Grid.Column textAlign="center" verticalAlign="bottom" width={2}>
+                <Grid.Column textAlign="center" verticalAlign="bottom" mobile={16} tablet={2} computer={2} widescreen={2}>
                   <Header as="h1"> = </Header>
                 </Grid.Column>
-                <Grid.Column width={7}>
+                <Grid.Column mobile={16} tablet={7} computer={7} widescreen={7}>
                   <Input
                     fluid
                     className="card-inputs"

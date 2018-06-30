@@ -7,6 +7,12 @@ import CardWrapper from './CardWrapper';
 import LoopCheck from './LoopCheck';
 
 class LoopCard extends Component {
+  constructor() {
+    super();
+
+    this.updateCard = this.updateCard.bind(this);
+  }
+
   toggleMenu() {
     this.setState({ showMenu: !this.state.showMenu });
   }
@@ -18,6 +24,7 @@ class LoopCard extends Component {
       if (card.cardGuid === cardGuid) {
         // eslint-disable-next-line
         card[prop] = value;
+        console.log(prop, value, card);
       }
     });
 
@@ -29,11 +36,29 @@ class LoopCard extends Component {
       cardChildren,
       showChallengeCardModal,
       removeChallengeCard,
+      cardData,
+      variableList,
       cardData: {
         cardGuid,
         isRemovable,
       }
     } = this.props;
+
+    const varList = variableList
+      .filter(v => v.cardType === 'variable');
+
+    const truthValue = varList
+      .map(v => ({
+        value: v.cardGuid,
+        text: v.variableName
+      }));
+
+    if (!truthValue.find(v => v.value === cardData.truthValue)) {
+      truthValue.push({ value: cardData.truthValue, text: cardData.truthValue });
+    }
+
+    const variableCheck = varList.map(v => ({ value: v.variableName, text: v.variableName }));
+
     return (
       <Grid.Column width={16}>
         <Card fluid color="green">
@@ -57,7 +82,13 @@ class LoopCard extends Component {
             <Grid stackable>
               <Grid.Row>
                 <Grid.Column width={16}>
-                  <LoopCheck conditionType="While" />
+                  <LoopCheck
+                    conditionType="While"
+                    variableCheckOptions={variableCheck}
+                    truthValueOptions={truthValue}
+                    handleUpdate={this.updateCard}
+                    {...cardData}
+                  />
                 </Grid.Column>
               </Grid.Row>
             </Grid>

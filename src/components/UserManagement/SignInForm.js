@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { Form, Message, Icon } from 'semantic-ui-react';
-
 import { withRouter } from 'react-router-dom';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { actionCreators } from '../../store/actions/app_Actions';
+import statusActions from '../../store/actions/status_Actions';
 
 import { auth } from '../../firebase';
 
@@ -20,9 +25,11 @@ class SignInForm extends Component {
     super(props);
 
     this.state = { ...INITIAL_STATE };
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onSubmit = (event) => {
+  async onSubmit() {
+    console.log(this.state);
     const {
       email,
       password,
@@ -30,18 +37,22 @@ class SignInForm extends Component {
 
     const {
       history,
+      initApp,
+      sendError,
     } = this.props;
 
-    auth.doSignInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.setState(() => ({ ...INITIAL_STATE }));
-        history.push('/challenges');
-      })
-      .catch((error) => {
-        this.setState(byPropKey('error', error));
-      });
+    try {
+      console.log(this.state);
+      await auth.doSignInWithEmailAndPassword(email, password);
 
-    event.preventDefault();
+      initApp();
+
+      this.setState({ ...INITIAL_STATE });
+      history.push('/challenges');
+    } catch (error) {
+      this.setState(byPropKey('error', error));
+      sendError(error, null);
+    }
   }
 
   handleOnChange(prop, value) {
@@ -84,4 +95,10 @@ class SignInForm extends Component {
   }
 }
 
-export default withRouter(SignInForm);
+export default compose(
+  withRouter,
+  connect(
+    null,
+    dispatch => bindActionCreators({ ...actionCreators, ...statusActions }, dispatch)
+  )
+)(SignInForm);

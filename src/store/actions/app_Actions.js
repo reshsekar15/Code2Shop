@@ -1,13 +1,47 @@
 import actionTypes from './actionTypes';
 import { firebase } from '../../firebase';
+import api from '../../helpers/api';
 
 export async function initApp(dispatch) {
   try {
     dispatch({ type: actionTypes.updateStatus, loading: true });
 
-    const userInfo = await firebase.auth.onAuthStateChanged();
+    firebase.auth.onAuthStateChanged(async (authUser) => {
+      if (authUser) {
+        const idToken = await authUser.getIdToken(true);
+        const data = await api.post('auth/authenticate', null, idToken);
 
-    dispatch({ type: actionTypes.initApplication, userInfo });
+        if (!data.success) {
+          throw data.message;
+        }
+
+        console.log(data);
+
+        const { userInfo, token } = data.results;
+
+        dispatch({ type: actionTypes.initApplication, userInfo, token });
+        dispatch({ type: actionTypes.updateStatus, loading: false });
+      } else {
+        dispatch({ type: actionTypes.initApplication, userInfo: null, token: null });
+        dispatch({ type: actionTypes.updateStatus, loading: false });
+      }
+    });
+  } catch (error) {
+    dispatch({ type: actionTypes.updateStatus, error, loading: false });
+  }
+}
+
+export async function createUser(userInfo, dispatch) {
+  try {
+    dispatch({ type: actionTypes.updateStatus, loading: true });
+
+    const data = await api.post('users/', { user: userInfo }, null);
+
+    if (!data.succcess) {
+      throw data.message;
+    }
+
+    dispatch({ type: actionTypes.initApplication, userInfo: data.results });
     dispatch({ type: actionTypes.updateStatus, loading: false });
   } catch (error) {
     dispatch({ type: actionTypes.updateStatus, error, loading: false });
@@ -49,6 +83,9 @@ export function checkDeviceInfo(dispatch) {
 export const actionCreators = {
   initApp: () => async (dispatch, getState) => {
     await initApp(dispatch, getState);
+  },
+  createUser: userInfo => async (dispatch, getState) => {
+    await createUser(userInfo, dispatch, getState);
   },
   checkDeviceInfo: () => (dispatch, getState) => {
     checkDeviceInfo(dispatch, getState);

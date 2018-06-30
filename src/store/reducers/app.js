@@ -2,6 +2,7 @@ import actionTypes from '../actions/actionTypes';
 
 const initialState = {
   userInfo: null,
+  token: null,
   isDesktop: true,
   isPhone: false,
   isTablet: false,
@@ -13,6 +14,7 @@ export default function appReducer(state = initialState, action) {
       return {
         ...state,
         userInfo: action.userInfo,
+        token: action.token,
       };
     case actionTypes.checkDeviceType:
       return {
