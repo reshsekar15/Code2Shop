@@ -5,7 +5,9 @@
     "classes": true
   },
   "globals": {
-    "window": true
+    "window": true,
+    "navigator": true,
+    "fetch": true
   },
   "rules": {
     "react/jsx-filename-extension": ["error", { "extensions": [".js", ".jsx"] }],

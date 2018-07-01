@@ -96,7 +96,7 @@ class LoopCard extends Component {
           <Card.Content extra>
             <Grid>
               {cardChildren.map(card => (
-                <Grid.Row>
+                <Grid.Row key={card.cardGuid}>
                   <Grid.Column width={16}>
                     <CardWrapper cardData={card} />
                   </Grid.Column>
