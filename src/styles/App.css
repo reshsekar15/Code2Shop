@@ -1,0 +1,308 @@
+@import url("https://fonts.googleapis.com/css?family=Sacramento");
+body {
+  height: 0;
+}
+
+.zero-padding {
+  padding: 0 !important;
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.App {
+  background-color: #efefef;
+  min-height: 100vh;
+}
+
+.ui.menu .item:before {
+  background: none !important;
+}
+
+.main-content {
+  padding-top: calc(55px + 20px);
+}
+
+.nontransition {
+  display: flex !important;
+}
+
+.sidenav {
+  margin: 0 !important;
+  width: 300px !important;
+  position: fixed !important;
+  border: none !important;
+  overflow: hidden !important;
+  top: 55px;
+}
+
+.with-sidenav {
+  width: calc(100vw - 300px);
+  margin-left: 300px;
+}
+
+.sign-up-container {
+  display: flex !important;
+  align-items: center !important;
+  height: 100vh;
+  background-color: #efefef;
+}
+
+.sign-up-container div.ui.segment {
+  width: 100%;
+  margin-top: -300px;
+}
+
+.fancy-font {
+  font-family: 'Sacramento', cursive !important;
+}
+
+h1.fancy-font {
+  font-weight: 400 !important;
+  font-size: 4rem !important;
+}
+
+.c2s-aqua {
+  background-color: #41E2BA !important;
+  color: white !important;
+  text-transform: uppercase !important;
+  font-size: 1.2rem !important;
+  letter-spacing: 3px;
+  padding-left: 50px !important;
+  padding-right: 50px !important;
+}
+
+.c2s-aqua-text {
+  color: #41E2BA !important;
+}
+
+.completed-challenges span:first-child {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.completed-challenges span:last-child {
+  font-size: 1.25rem;
+}
+
+.landing-page-jumbotron {
+  position: relative;
+  max-height: 1000px;
+  margin: 0 !important;
+  overflow: hidden;
+  padding: 66.6667% 0 0 0;
+}
+
+.landing-page-jumbotron img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.landing-page-jumbotron .floating-message {
+  background-color: rgba(240, 240, 240, 0.4);
+  border-radius: 0;
+  position: absolute;
+  left: 40px;
+  bottom: 40px;
+  padding: 25px;
+}
+
+@media only screen and (max-width: 767px) {
+  .landing-page-jumbotron .floating-message {
+    background-color: rgba(240, 240, 240, 0.6);
+    border-radius: 0;
+    position: absolute;
+    left: 5px;
+    width: calc(100vw - 10px);
+    height: calc(100% - 10px);
+    bottom: 5px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+  .landing-page-jumbotron .floating-message .content-to-center {
+    margin: auto auto;
+  }
+  .landing-page-jumbotron .floating-message .content-to-center .fancy-font {
+    font-size: 3rem;
+    font-weight: 500;
+  }
+}
+
+.challenges-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.challenges-content .challenges-name {
+  font-size: 1.5rem;
+  letter-spacing: 1.25px;
+  font-weight: 600;
+  width: 100%;
+  color: #212121;
+}
+
+.challenges-content .challenges-icon {
+  float: right;
+  color: #212121;
+}
+
+.challenges-content .challenges-icon .complete-text {
+  font-weight: bold;
+}
+
+.c2s-logo {
+  font-size: 1.2rem !important;
+  letter-spacing: 1.5px;
+  font-weight: 500 !important;
+}
+
+.products-and-services {
+  background-color: #FFFAF9 !important;
+  padding: 20px !important;
+  margin: 0 !important;
+}
+
+.information-header-text {
+  letter-spacing: 1.5px;
+  text-align: center;
+  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+
+.information-sub-header-text {
+  font-family: 'Sacramento', cursive !important;
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.set-min-tab-height {
+  height: calc(100vh - 203px) !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+}
+
+.no-left-margin {
+  margin-left: 0px !important;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  background-color: rgba(240, 240, 240, 0.6);
+}
+
+.code-container {
+  position: relative;
+  padding: 10px;
+}
+
+.code-container .code-area {
+  display: block;
+  height: 100%;
+  width: 100%;
+  word-wrap: break-word;
+  outline: none;
+  border: none;
+  box-shadow: 0px 2px 3px lightslategray;
+  border-radius: 10px;
+  background: url(http://i.imgur.com/2cOaJ.png);
+  background-attachment: local;
+  background-repeat: no-repeat;
+  padding-left: 35px;
+  padding-top: 10px;
+  background-color: white;
+  resize: none;
+}
+
+.ui.card > .image, .ui.cards > .card > .image {
+  background: transparent;
+  color: black;
+}
+
+.challenge-topbar {
+  border: none !important;
+  margin-bottom: 0 !important;
+  border-radius: none !important;
+}
+
+.challenge-topbar .item {
+  border-radius: 0 !important;
+}
+
+.code-button {
+  background-color: #41E2BA !important;
+  border-radius: 18px !important;
+  color: white !important;
+}
+
+.code-button-gray {
+  background-color: #C7C7C7 !important;
+  border-radius: 18px !important;
+  color: white !important;
+}
+
+.strike-through {
+  color: dimgray;
+  text-decoration: line-through;
+  font-weight: 600;
+  font-size: 1.3rem;
+  text-align: center;
+  width: 100%;
+  cursor: unset;
+}
+
+.redeemable {
+  color: aquamarine !important;
+  font-weight: 600;
+  font-size: 1.3rem;
+  text-align: center;
+  width: 100%;
+}
+
+.redeemable-points {
+  text-align: center;
+}
+
+.redeemable-points-value {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.primary-text {
+  color: #41E2BA !important;
+}
+
+.center-content {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.align-content-left {
+  display: flex !important;
+  justify-content: flex-start !important;
+}
+
+.align-content-right {
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+/*# sourceMappingURL=app.css.map */

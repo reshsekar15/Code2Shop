@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import TopNav from './TopNav';
-import SideNav from './Sidenav/SideNav';
 
-class App extends Component {
-  render() {
-    console.log(this.props)
-    return (
-      <div className="App">
-        <TopNav />
-        {this.props.match.url === '/challenges' && <SideNav />}
-        {this.props.children}
-      </div>
-    );
-  }
-}
+const Layout = ({ userInfo, children }) => (
+  <div className="App">
+    <TopNav userInfo={userInfo} />
+    <div className="main-content">
+      {children}
+    </div>
+  </div>
+);
 
-export default App;
+export default connect(
+  state => state.app,
+  null
+)(Layout);

@@ -1,51 +1,95 @@
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
-import Group4 from '../logo/Group 4.png';
+import { Menu, Image, Header, Button, Container } from 'semantic-ui-react';
+import Logo from '../logo/Code2Shop-Logo-Contrast.png';
+import SignOutButton from './UserManagement/SignOut';
 
-const TopNav = () => {
+const TopNav = ({ url, userInfo }) => {
+  console.log(userInfo);
+  if (url === '/') {
+    return (
+      <Menu
+        fixed="top"
+        size="large"
+        style={{ margin: 0 }}
+      >
+        <Container>
+          <Menu.Item
+            as="a"
+            href="/"
+            style={{ border: 'none', padding: '5px' }}
+          >
+            <Header as="h3" className="c2s-logo">
+              <Image src={Logo} size="mini" />
+              <Header.Content>
+                <strong>CODE</strong> 2 SHOP
+              </Header.Content>
+            </Header>
+          </Menu.Item>
+          <Menu.Item position="right">
+            {!!userInfo && (<SignOutButton />)}
+            {!userInfo && (
+              <Button
+                basic
+                as="a"
+                href="/signin"
+              >
+                LOG IN
+              </Button>)}
+          </Menu.Item>
+        </Container>
+      </Menu>
+    );
+  }
+
   return (
-    <Menu fixed="top" className="top-navbar">
-      <Menu.Item style={{border: 'none'}}>
-        <a className="brand-logo" href="/" >
-          <img src={Group4} height='45' />
-        </a>
-      </Menu.Item>
-      <Menu.Item 
-        as="a" 
-        style={{border: 'none'}}
-        onClick={() => window.location.href = '/challenges'}
-      >
-        Challenges
-      </Menu.Item>
-      <Menu.Item 
-        as="a" 
-        style={{border: 'none'}}
-        onClick={() => window.location.href = '/rewards'}
-      >
-        Redeem
-      </Menu.Item>
-      <Menu.Item 
-        as="a" 
-        style={{border: 'none'}}
-        onClick={() => window.location.href = '/about'}
-      >
-        About Us
-      </Menu.Item>
-      <Menu.Item 
-        as="a" 
-        style={{border: 'none'}}
-        onClick={() => window.location.href = '/contact'}
-      >
-        Contact Us
-      </Menu.Item>
-      <Menu.Menu position="right">
-        <Menu.Item as="a">
-          <span style={{fontSize: '2rem', height:'2rem', marginRight: '5px'}}>375</span>
-          <span style={{ height:'2rem', lineHeight: 2.5}}>points</span>
+    <Menu
+      fixed="top"
+      size="large"
+      style={{ margin: 0 }}
+    >
+      <Container>
+        <Menu.Item
+          as="a"
+          href="/"
+          style={{ border: 'none', padding: '5px' }}
+        >
+          <Header as="h3" className="c2s-logo">
+            <Image src={Logo} size="mini" />
+            <Header.Content>
+              <strong>CODE</strong> 2 SHOP
+            </Header.Content>
+          </Header>
         </Menu.Item>
-      </Menu.Menu>
+        <Menu.Item
+          as="a"
+          style={{ border: 'none' }}
+          href="/challenges"
+        >
+          Challenges
+        </Menu.Item>
+        <Menu.Item
+          as="a"
+          style={{ border: 'none' }}
+          href="/rewards"
+        >
+          Redeem
+        </Menu.Item>
+        <Menu.Menu position="right">
+          <Menu.Item>
+            {!!userInfo && (<SignOutButton />)}
+            {!userInfo && (
+              <Button
+                basic
+                as="a"
+                href="/signin"
+              >
+                LOG IN
+              </Button>)}
+          </Menu.Item>
+        </Menu.Menu>
+      </Container>
     </Menu>
-  )
-}
+  );
+};
 
 export default TopNav;
